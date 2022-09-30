@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4j6enbgs1r70"]
+
+[ext_resource type="Script" path="res://ChunkSpawner.gd" id="2_n1x2w"]
+
+[node name="Node2d" type="Node2D"]
+texture_filter = 1
+
+[node name="Camera2d" type="Camera2D" parent="."]
+current = true
+zoom = Vector2(4, 4)
+
+[node name="ChunkSpawner" type="Node2D" parent="."]
+script = ExtResource("2_n1x2w")
