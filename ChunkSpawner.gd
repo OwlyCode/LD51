@@ -2,8 +2,8 @@ extends Node2D
 
 var chunks = [
 	preload("res://chunks/flat.tscn"),
-	#preload("res://chunks/flat2.tscn"),
-	#preload("res://chunks/flat3.tscn"),
+	preload("res://chunks/flat2.tscn"),
+	preload("res://chunks/flat3.tscn"),
 ]
 
 var parallax = [
@@ -38,6 +38,8 @@ var lowest = 0
 var total_distance = 0.0
 
 var idling = true
+
+var first_chunk = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -88,9 +90,16 @@ func spawn_parallax():
 	last_parallax = instance
 
 
+
 func spawn_next():
 	var rand_index:int = randi() % chunks.size()
+
+	if first_chunk:
+		rand_index = 0
+		first_chunk = false
+
 	var instance = chunks[rand_index].instantiate()
+
 
 	var jump_sizes = jump_flat
 

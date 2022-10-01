@@ -16,7 +16,7 @@ var current_dimension = "the normal dimension"
 @onready var camera = get_node("/root/Node2d/Camera2d")
 
 func _ready():
-	pass
+	reset_visual_effect()
 
 const MAX_BLINK_SPEED = 0.125
 const MIN_BLINK_SPEED = 0.025
