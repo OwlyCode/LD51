@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3ijc54xdmkip"]
+[gd_scene load_steps=12 format=3 uid="uid://c3ijc54xdmkip"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_r28ip"]
 [ext_resource type="AudioStream" uid="uid://b7b7gn4k4lyfm" path="res://arts/jump.wav" id="3_ry5eg"]
 [ext_resource type="Texture2D" uid="uid://do3fbpf65qtbn" path="res://arts/character.png" id="4_kyhtt"]
+[ext_resource type="AudioStream" uid="uid://c2d6xlvg35u7i" path="res://arts/Death.wav" id="4_muf6v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dmtd2"]
 friction = 0.0
@@ -78,3 +79,8 @@ position = Vector2(0, -8)
 frames = SubResource("SpriteFrames_pmy0w")
 animation = &"Die"
 playing = true
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_muf6v")
+
+[connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]

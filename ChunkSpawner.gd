@@ -46,6 +46,12 @@ func _process(delta):
 	fill()
 	fill_parallax()
 
+	if player.global_position.y > lowest + 200:
+		player.die()
+
+func can_scroll():
+	return player.alive
+
 func fill():
 	if $Chunks.get_child_count() < 4:
 		spawn_next()
@@ -65,10 +71,11 @@ func refresh_lowest():
 func spawn_parallax():
 	var rand_index:int = randi() % parallax.size()
 	var instance = parallax[rand_index].instantiate()
+	$FakeParallax.add_child(instance)
+
 	if last_parallax:
 		instance.global_position = last_parallax.global_position + Vector2(255, 0)
 
-	$FakeParallax.add_child(instance)
 
 	last_parallax = instance
 
