@@ -1,29 +1,55 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3ijc54xdmkip"]
+[gd_scene load_steps=11 format=3 uid="uid://c3ijc54xdmkip"]
 
-[ext_resource type="Texture2D" uid="uid://dqwnwknka4yjm" path="res://arts/tileset.png" id="1_inwfj"]
 [ext_resource type="Script" path="res://Player.gd" id="1_r28ip"]
 [ext_resource type="AudioStream" uid="uid://b7b7gn4k4lyfm" path="res://arts/jump.wav" id="3_ry5eg"]
+[ext_resource type="Texture2D" uid="uid://do3fbpf65qtbn" path="res://arts/character.png" id="4_kyhtt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dmtd2"]
 friction = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptuk1"]
-atlas = ExtResource("1_inwfj")
-region = Rect2(2.91798, -0.27776, 10.082, 16.5781)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xiens"]
 radius = 4.0
 height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vic06"]
+atlas = ExtResource("4_kyhtt")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tejji"]
+atlas = ExtResource("4_kyhtt")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rommr"]
+atlas = ExtResource("4_kyhtt")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1ved"]
+atlas = ExtResource("4_kyhtt")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pmy0w"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Die",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_vic06")],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_tejji"), SubResource("AtlasTexture_rommr"), SubResource("AtlasTexture_a1ved"), SubResource("AtlasTexture_tejji")],
+"loop": true,
+"name": &"Run",
+"speed": 12.0
+}]
 
 [node name="Player" type="RigidBody2D"]
 mass = 80.0
 physics_material_override = SubResource("PhysicsMaterial_dmtd2")
 continuous_cd = 2
 script = ExtResource("1_r28ip")
-
-[node name="Sprite2d" type="Sprite2D" parent="."]
-position = Vector2(0, -8)
-texture = SubResource("AtlasTexture_ptuk1")
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -46,3 +72,9 @@ scale = Vector2(0.5, 0.8)
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ry5eg")
 volume_db = -31.132
+
+[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+frames = SubResource("SpriteFrames_pmy0w")
+animation = &"Die"
+playing = true
