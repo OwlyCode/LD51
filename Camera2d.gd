@@ -1,11 +1,12 @@
 extends Camera2D
 
 @onready var player = get_node("/root/Node2d/Player")
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+@onready var chunk_manager = get_node("/root/Node2d/ChunkManager")
 
 func _process(delta):
-	global_position = Vector2(0, player.global_position.y)
+	var y = player.global_position.y
+
+	if y > chunk_manager.lowest:
+		y = chunk_manager.lowest
+
+	global_position = Vector2(0, y)

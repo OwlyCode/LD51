@@ -7,6 +7,7 @@ var chunks = [
 ]
 
 var last_chunk = null
+var lowest = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,11 +16,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	refresh_lowest()
 	fill()
 
 func fill():
 	if get_child_count() < 8:
 		spawn_next()
+
+func refresh_lowest():
+	lowest = INF
+	for child in get_children():
+		var lw = child.get_node("Lowest").global_position.y
+
+		if lw < lowest:
+			lowest = lw
 
 func spawn_next():
 	var rand_index:int = randi() % chunks.size()
