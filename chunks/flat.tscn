@@ -1,40 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://jgoit60r3dwi"]
+[gd_scene load_steps=3 format=3 uid="uid://jgoit60r3dwi"]
 
 [ext_resource type="Script" path="res://chunks/chunk.gd" id="1_fgte8"]
-[ext_resource type="Texture2D" uid="uid://dqwnwknka4yjm" path="res://arts/tileset.png" id="1_tjyet"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i6e06"]
-texture = ExtResource("1_tjyet")
-0:0/0 = 0
-2:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-2:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-2:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-2:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-3:6/0 = 0
-5:6/0 = 0
-5:7/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_hm1lm"]
-sources/0 = SubResource("TileSetAtlasSource_i6e06")
+[ext_resource type="TileSet" uid="uid://b7npiu71j3gbi" path="res://chunks/tileset.tres" id="2_k18gl"]
 
 [node name="Node2d" type="Node2D"]
 script = ExtResource("1_fgte8")
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
-tile_set = SubResource("TileSet_hm1lm")
+tile_set = ExtResource("2_k18gl")
 format = 2
 layer_0/tile_data = PackedInt32Array(65534, 262144, 2, 65535, 327680, 2, 0, 327680, 2, 1, 393216, 2, 131070, 262144, 4, 131071, 327680, 4, 65537, 393216, 4, 65536, 327680, 4)
 

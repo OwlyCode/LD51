@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = 120
+var speed = 50
 
 var invisible_cooldown = 0.3
 

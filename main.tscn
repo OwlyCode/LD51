@@ -1,13 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4j6enbgs1r70"]
+[gd_scene load_steps=4 format=3 uid="uid://c4j6enbgs1r70"]
 
+[ext_resource type="PackedScene" uid="uid://c3ijc54xdmkip" path="res://player.tscn" id="2_5gbvf"]
 [ext_resource type="Script" path="res://ChunkSpawner.gd" id="2_n1x2w"]
+[ext_resource type="Script" path="res://Camera2d.gd" id="2_tbqe3"]
 
 [node name="Node2d" type="Node2D"]
 texture_filter = 1
 
-[node name="Camera2d" type="Camera2D" parent="."]
-current = true
-zoom = Vector2(4, 4)
-
 [node name="ChunkSpawner" type="Node2D" parent="."]
 script = ExtResource("2_n1x2w")
+
+[node name="Camera2d" type="Camera2D" parent="."]
+position = Vector2(0, -31)
+current = true
+zoom = Vector2(4, 4)
+script = ExtResource("2_tbqe3")
+
+[node name="Player" parent="." instance=ExtResource("2_5gbvf")]
+position = Vector2(0, -31)
+mass = 70.0
