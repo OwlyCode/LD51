@@ -72,7 +72,7 @@ scale = Vector2(0.5, 0.8)
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ry5eg")
-volume_db = -31.132
+volume_db = -10.0
 
 [node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)

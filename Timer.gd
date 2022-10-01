@@ -21,3 +21,4 @@ func _on_timer_timeout():
 	print("lel")
 
 	%ScreenShader.material.shader = preload("res://shaders/grayscale.gdshader")
+	$EventEffect.play()

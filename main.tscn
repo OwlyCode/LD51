@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://c4j6enbgs1r70"]
+[gd_scene load_steps=18 format=3 uid="uid://c4j6enbgs1r70"]
 
 [ext_resource type="Script" path="res://Timer.gd" id="1_asy31"]
 [ext_resource type="PackedScene" uid="uid://c3ijc54xdmkip" path="res://player.tscn" id="2_5gbvf"]
 [ext_resource type="Script" path="res://ChunkSpawner.gd" id="2_n1x2w"]
+[ext_resource type="AudioStream" uid="uid://iwuda40aiqo8" path="res://arts/Event.wav" id="2_rxtn7"]
 [ext_resource type="Script" path="res://Camera2d.gd" id="2_tbqe3"]
 [ext_resource type="Texture2D" uid="uid://dc30xi0rghix3" path="res://arts/background.png" id="4_bfqeh"]
 [ext_resource type="Texture2D" uid="uid://b6xeowpppo74x" path="res://arts/energy1.png" id="6_wkt4m"]
@@ -37,6 +38,9 @@ texture_filter = 1
 wait_time = 10.0
 autostart = true
 script = ExtResource("1_asy31")
+
+[node name="EventEffect" type="AudioStreamPlayer2D" parent="Timer"]
+stream = ExtResource("2_rxtn7")
 
 [node name="ChunkManager" type="Node2D" parent="."]
 script = ExtResource("2_n1x2w")
