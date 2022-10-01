@@ -47,7 +47,7 @@ script = ExtResource("4_magbv")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0, 0)
-motion_offset = Vector2(170, 80)
+motion_offset = Vector2(170, 70)
 
 [node name="Sprite2d" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_filter = 1

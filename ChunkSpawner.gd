@@ -12,16 +12,24 @@ var parallax = [
 
 const CELL_SIZE = 16
 
-var jump_sizes = [
-	Vector2(16, 0), # short
-	Vector2(32, 0), # wide
-	Vector2(48, 0), # very wide
-	Vector2(16, -16), # short up
-	Vector2(16, -32), # wide up
-	Vector2(16, 16), # short down
-	Vector2(16, 32), # wide down
-	Vector2(16, 48), # leap down
+var jump_flat = [
+	Vector2(3, 0), # short
+	Vector2(4, 0), # wide
+	Vector2(5, 0), # very wide
 ]
+
+var jump_up = [
+	Vector2(3, -1), # short up
+	Vector2(3, -2), # wide up
+]
+
+var jump_down = [
+	Vector2(3, 1), # short down
+	Vector2(3, 2), # wide down
+	Vector2(3, 3), # leap down
+]
+
+@onready var player = get_node("/root/Node2d/Player")
 
 var last_chunk = null
 var last_parallax = null
@@ -39,7 +47,7 @@ func _process(delta):
 	fill_parallax()
 
 func fill():
-	if $Chunks.get_child_count() < 8:
+	if $Chunks.get_child_count() < 4:
 		spawn_next()
 
 func fill_parallax():
@@ -69,11 +77,20 @@ func spawn_next():
 	var rand_index:int = randi() % chunks.size()
 	var instance = chunks[rand_index].instantiate()
 
+	var jump_sizes = jump_flat
+
+	if last_chunk and (last_chunk.get_node("Entry").global_position.y > 0):
+		jump_sizes = jump_up
+	elif last_chunk and (last_chunk.get_node("Entry").global_position.y < -24):
+		jump_sizes = jump_down
+	else:
+		jump_sizes = jump_flat + jump_up + jump_down
+
 	rand_index = randi() % jump_sizes.size()
 	var jump_size = jump_sizes[rand_index]
 
 	if last_chunk:
-		instance.global_position = last_chunk.get_node("Exit").global_position - instance.get_node("Entry").position + jump_size
+		instance.global_position = last_chunk.get_node("Exit").global_position - instance.get_node("Entry").position + jump_size * CELL_SIZE
 
 	$Chunks.add_child(instance)
 

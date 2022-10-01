@@ -9,4 +9,4 @@ func _process(delta):
 	if y > chunk_manager.lowest:
 		y = chunk_manager.lowest
 
-	global_position = Vector2(0, y)
+	global_position = Vector2(0, y - 30)
