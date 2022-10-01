@@ -1,10 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4j6enbgs1r70"]
+[gd_scene load_steps=12 format=3 uid="uid://c4j6enbgs1r70"]
 
 [ext_resource type="PackedScene" uid="uid://c3ijc54xdmkip" path="res://player.tscn" id="2_5gbvf"]
 [ext_resource type="Script" path="res://ChunkSpawner.gd" id="2_n1x2w"]
 [ext_resource type="Script" path="res://Camera2d.gd" id="2_tbqe3"]
 [ext_resource type="Texture2D" uid="uid://dc30xi0rghix3" path="res://arts/background.png" id="4_bfqeh"]
 [ext_resource type="Script" path="res://ParallaxBackground.gd" id="4_magbv"]
+[ext_resource type="Texture2D" uid="uid://b6xeowpppo74x" path="res://arts/energy1.png" id="6_wkt4m"]
+[ext_resource type="Texture2D" uid="uid://bmp3jfy84bbto" path="res://arts/energy2.png" id="7_28qcv"]
+[ext_resource type="Texture2D" uid="uid://2nl6inetn5oi" path="res://arts/energy3.png" id="8_gd5dy"]
+[ext_resource type="Texture2D" uid="uid://dmvbsaj8qdpn4" path="res://arts/energy4.png" id="9_1pfty"]
+[ext_resource type="Texture2D" uid="uid://vtx10u5018wl" path="res://arts/energy5.png" id="10_q23ut"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n2bjm"]
+animations = [{
+"frames": [ExtResource("6_wkt4m"), ExtResource("7_28qcv"), ExtResource("8_gd5dy"), ExtResource("9_1pfty"), ExtResource("10_q23ut")],
+"loop": true,
+"name": &"Power",
+"speed": 5.0
+}]
 
 [node name="Node2d" type="Node2D"]
 texture_filter = 1
@@ -37,3 +50,10 @@ motion_offset = Vector2(170, 80)
 texture_filter = 1
 z_index = -100
 texture = ExtResource("4_bfqeh")
+
+[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 0.14902, 0, 1)
+texture_filter = 1
+frames = SubResource("SpriteFrames_n2bjm")
+animation = &"Power"
+playing = true
