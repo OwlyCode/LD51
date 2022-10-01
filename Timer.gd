@@ -7,18 +7,58 @@ extends Timer
 
 # Kinds of modifiers : graphics, gameplay, tileset (can be cumulative)
 
-# Called when the node enters the scene tree for the first time.
+var rift1 = preload("res://arts/space1.png")
+var rift2 = preload("res://arts/space2.png")
+var rift3 = preload("res://arts/space3.png")
+
+@onready var camera = get_node("/root/Node2d/Camera2d")
+
 func _ready():
 	pass
-	#%ScreenShader.material.shader = preload("res://shaders/grayscale.gdshader")
 
+const MAX_BLINK_SPEED = 0.125
+const MIN_BLINK_SPEED = 0.025
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+var blink = MAX_BLINK_SPEED
+var buildup_played = false
+
 func _process(delta):
-	pass
+
+	if time_left < 2.5 and not buildup_played:
+		buildup_played = true
+		$BuildUp.play()
+
+	if time_left < 1.0:
+		%Rift.visible = true
+		%Rift.texture = rift3
+	elif time_left < 1.5:
+		%Rift.visible = true
+		%Rift.texture = rift2
+	elif time_left < 2.0:
+		%Rift.visible = true
+		%Rift.texture = rift1
+	else:
+		%Rift.visible = false
+
+	if time_left < 2.0:
+		camera.shaking = true
+		camera.shaking_amount = lerp(3.0, 0.1, time_left / 2)
+		print(camera.shaking_amount)
+	else:
+		camera.shaking = false
+
+	if time_left < 2.0:
+		%Lasers.modulate = Color.RED.lerp(Color.WHITE, time_left / 2)
+
+		blink -= delta
+		if blink < 0:
+			%Lasers.visible = not %Lasers.visible
+			blink = lerp(MIN_BLINK_SPEED, MAX_BLINK_SPEED, time_left / 2)
+	else:
+		%Lasers.visible = true
+		%Lasers.modulate = Color.WHITE
 
 func _on_timer_timeout():
-	print("lel")
-
 	%ScreenShader.material.shader = preload("res://shaders/grayscale.gdshader")
 	$EventEffect.play()
+	buildup_played = false

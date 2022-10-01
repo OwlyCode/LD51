@@ -1,17 +1,20 @@
-[gd_scene load_steps=18 format=3 uid="uid://c4j6enbgs1r70"]
+[gd_scene load_steps=21 format=3 uid="uid://c4j6enbgs1r70"]
 
 [ext_resource type="Script" path="res://Timer.gd" id="1_asy31"]
 [ext_resource type="PackedScene" uid="uid://c3ijc54xdmkip" path="res://player.tscn" id="2_5gbvf"]
 [ext_resource type="Script" path="res://ChunkSpawner.gd" id="2_n1x2w"]
 [ext_resource type="AudioStream" uid="uid://iwuda40aiqo8" path="res://arts/Event.wav" id="2_rxtn7"]
 [ext_resource type="Script" path="res://Camera2d.gd" id="2_tbqe3"]
-[ext_resource type="Texture2D" uid="uid://dc30xi0rghix3" path="res://arts/background.png" id="4_bfqeh"]
+[ext_resource type="AudioStream" uid="uid://blliyd12row48" path="res://arts/Buildup.wav" id="3_svxki"]
 [ext_resource type="Texture2D" uid="uid://b6xeowpppo74x" path="res://arts/energy1.png" id="6_wkt4m"]
 [ext_resource type="Texture2D" uid="uid://bmp3jfy84bbto" path="res://arts/energy2.png" id="7_28qcv"]
+[ext_resource type="Texture2D" uid="uid://bhfiyujrkx3up" path="res://arts/background_sky.png" id="7_rtlkq"]
 [ext_resource type="Texture2D" uid="uid://2nl6inetn5oi" path="res://arts/energy3.png" id="8_gd5dy"]
 [ext_resource type="Texture2D" uid="uid://dmvbsaj8qdpn4" path="res://arts/energy4.png" id="9_1pfty"]
+[ext_resource type="Texture2D" uid="uid://brkcda6v3krnv" path="res://arts/background_buildings.png" id="9_dc4n8"]
 [ext_resource type="Texture2D" uid="uid://vtx10u5018wl" path="res://arts/energy5.png" id="10_q23ut"]
 [ext_resource type="AudioStream" uid="uid://bfs6g3pr5e1w8" path="res://arts/loop.wav" id="11_h8dt2"]
+[ext_resource type="Texture2D" uid="uid://bogxxhbc7mqmg" path="res://arts/space1.png" id="13_736aj"]
 [ext_resource type="Shader" path="res://shaders/noop.gdshader" id="13_iuega"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gwh2r"]
@@ -41,6 +44,10 @@ script = ExtResource("1_asy31")
 
 [node name="EventEffect" type="AudioStreamPlayer2D" parent="Timer"]
 stream = ExtResource("2_rxtn7")
+
+[node name="BuildUp" type="AudioStreamPlayer2D" parent="Timer"]
+stream = ExtResource("3_svxki")
+pitch_scale = 2.0
 
 [node name="ChunkManager" type="Node2D" parent="."]
 script = ExtResource("2_n1x2w")
@@ -80,9 +87,21 @@ motion_offset = Vector2(170, 70)
 [node name="Sprite2d" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_filter = 1
 z_index = -100
-texture = ExtResource("4_bfqeh")
+texture = ExtResource("7_rtlkq")
 
-[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Rift" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+unique_name_in_owner = true
+position = Vector2(-1, -27)
+z_index = -50
+texture = ExtResource("13_736aj")
+
+[node name="Sprite2d2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+z_index = -25
+texture = ExtResource("9_dc4n8")
+
+[node name="Lasers" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer"]
+unique_name_in_owner = true
 modulate = Color(1, 0.14902, 0, 1)
 texture_filter = 1
 frames = SubResource("SpriteFrames_n2bjm")
