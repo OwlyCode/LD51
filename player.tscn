@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3ijc54xdmkip"]
+[gd_scene load_steps=7 format=3 uid="uid://c3ijc54xdmkip"]
 
 [ext_resource type="Texture2D" uid="uid://dqwnwknka4yjm" path="res://arts/tileset.png" id="1_inwfj"]
 [ext_resource type="Script" path="res://Player.gd" id="1_r28ip"]
+[ext_resource type="AudioStream" uid="uid://b7b7gn4k4lyfm" path="res://arts/jump.wav" id="3_ry5eg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dmtd2"]
 friction = 0.0
@@ -30,14 +31,18 @@ shape = SubResource("CapsuleShape2D_xiens")
 
 [node name="RightGroundChecker" type="RayCast2D" parent="."]
 position = Vector2(5, 0)
-target_position = Vector2(0, 1)
+target_position = Vector2(0, 2)
 hit_from_inside = true
 
 [node name="LeftGroundChecker" type="RayCast2D" parent="."]
 position = Vector2(-5, 0)
-target_position = Vector2(0, 1)
+target_position = Vector2(0, 2)
 hit_from_inside = true
 
 [node name="VisibleOnScreenNotifier2d" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -8)
 scale = Vector2(0.5, 0.8)
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ry5eg")
+volume_db = -31.132

@@ -19,4 +19,5 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("jump"):
 		if $LeftGroundChecker.is_colliding() or $RightGroundChecker.is_colliding():
-			apply_central_impulse(Vector2.UP * 20000)
+			apply_central_impulse(Vector2.UP * 25000)
+			$JumpSound.play()

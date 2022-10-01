@@ -2,8 +2,8 @@ extends Node2D
 
 var chunks = [
 	preload("res://chunks/flat.tscn"),
-	preload("res://chunks/flat2.tscn"),
-	preload("res://chunks/flat3.tscn"),
+	#preload("res://chunks/flat2.tscn"),
+	#preload("res://chunks/flat3.tscn"),
 ]
 
 var parallax = [
@@ -43,7 +43,7 @@ func fill():
 		spawn_next()
 
 func fill_parallax():
-	if $FakeParallax.get_child_count() < 8:
+	if $FakeParallax.get_child_count() < 3:
 		spawn_parallax()
 
 func refresh_lowest():
@@ -58,7 +58,7 @@ func spawn_parallax():
 	var rand_index:int = randi() % parallax.size()
 	var instance = parallax[rand_index].instantiate()
 	if last_parallax:
-		instance.global_position = last_parallax.global_position + Vector2(255, lowest)
+		instance.global_position = last_parallax.global_position + Vector2(255, 0)
 
 	$FakeParallax.add_child(instance)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4j6enbgs1r70"]
+[gd_scene load_steps=13 format=3 uid="uid://c4j6enbgs1r70"]
 
 [ext_resource type="PackedScene" uid="uid://c3ijc54xdmkip" path="res://player.tscn" id="2_5gbvf"]
 [ext_resource type="Script" path="res://ChunkSpawner.gd" id="2_n1x2w"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://2nl6inetn5oi" path="res://arts/energy3.png" id="8_gd5dy"]
 [ext_resource type="Texture2D" uid="uid://dmvbsaj8qdpn4" path="res://arts/energy4.png" id="9_1pfty"]
 [ext_resource type="Texture2D" uid="uid://vtx10u5018wl" path="res://arts/energy5.png" id="10_q23ut"]
+[ext_resource type="AudioStream" uid="uid://bfs6g3pr5e1w8" path="res://arts/loop.wav" id="11_h8dt2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n2bjm"]
 animations = [{
@@ -35,6 +36,8 @@ current = true
 zoom = Vector2(3, 3)
 script = ExtResource("2_tbqe3")
 
+[node name="AudioListener2d" type="AudioListener2D" parent="Camera2d"]
+
 [node name="Player" parent="." instance=ExtResource("2_5gbvf")]
 position = Vector2(0, -31)
 mass = 70.0
@@ -57,3 +60,7 @@ texture_filter = 1
 frames = SubResource("SpriteFrames_n2bjm")
 animation = &"Power"
 playing = true
+
+[node name="AudioStreamPlayer2d" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_h8dt2")
+autoplay = true
