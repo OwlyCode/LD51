@@ -37,6 +37,8 @@ var lowest = 0
 
 var total_distance = 0.0
 
+var idling = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -51,12 +53,12 @@ func _process(delta):
 	if player.global_position.y > lowest + 200:
 		player.die("you fell from a very high place")
 
-	if player.alive:
+	if can_scroll():
 		total_distance += 6.0 * delta
 		%DistanceDisplay.text = "%dm" % total_distance
 
 func can_scroll():
-	return player.alive
+	return player.alive and not idling
 
 func fill():
 	if $Chunks.get_child_count() < 4:

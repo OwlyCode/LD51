@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3ijc54xdmkip"]
+[gd_scene load_steps=13 format=3 uid="uid://c3ijc54xdmkip"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_r28ip"]
 [ext_resource type="AudioStream" uid="uid://b7b7gn4k4lyfm" path="res://arts/jump.wav" id="3_ry5eg"]
@@ -11,6 +11,10 @@ friction = 0.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xiens"]
 radius = 4.0
 height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_870oa"]
+atlas = ExtResource("4_kyhtt")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vic06"]
 atlas = ExtResource("4_kyhtt")
@@ -33,6 +37,11 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"Die",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_870oa")],
+"loop": true,
+"name": &"Idle",
 "speed": 5.0
 }, {
 "frames": [SubResource("AtlasTexture_vic06")],
@@ -77,7 +86,7 @@ volume_db = -10.0
 [node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 frames = SubResource("SpriteFrames_pmy0w")
-animation = &"Die"
+animation = &"Idle"
 playing = true
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]

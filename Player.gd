@@ -8,7 +8,7 @@ var death_cause = ""
 
 func _ready():
 	lock_rotation = true
-	$AnimatedSprite2d.play("Run")
+	$AnimatedSprite2d.play("Idle")
 
 func die(death_cause):
 	if alive:
@@ -20,6 +20,12 @@ func die(death_cause):
 		alive = false
 
 func _physics_process(delta):
+
+	if %ChunkManager.idling and (Input.is_action_pressed("right") or Input.is_action_pressed("left") or Input.is_action_pressed("jump")):
+		%ChunkManager.idling = false
+		%Intro.visible = false
+		%Timer.start()
+
 	if not alive and Input.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
 	if alive and Input.is_action_pressed("right"):
@@ -35,6 +41,11 @@ func _physics_process(delta):
 			$JumpSound.play()
 
 	if $LeftGroundChecker.is_colliding() or $RightGroundChecker.is_colliding():
-		$AnimatedSprite2d.play("Run")
+		if %ChunkManager.idling:
+			$AnimatedSprite2d.play("Idle")
+			linear_damp = 100
+		else:
+			$AnimatedSprite2d.play("Run")
+			linear_damp = 0
 	else:
 		$AnimatedSprite2d.play("Jump")

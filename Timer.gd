@@ -25,6 +25,10 @@ var blink = MAX_BLINK_SPEED
 var buildup_played = false
 
 func _process(delta):
+	if %ChunkManager.idling:
+		%Rift.visible = false
+		stop()
+		return
 
 	if time_left < 2.5 and not buildup_played:
 		buildup_played = true
@@ -45,6 +49,7 @@ func _process(delta):
 	if time_left < 2.0:
 		camera.shaking = true
 		camera.shaking_amount = lerp(3.0, 0.1, time_left / 2)
+		%Glow.visible = true
 		%Glow.modulate = Color(1.0, 0.0, 0.0, lerp(0.25, 0.0, time_left / 2))
 	else:
 		camera.shaking = false
