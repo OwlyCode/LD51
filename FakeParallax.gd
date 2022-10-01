@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = 50
+var speed = 40
 
 func _process(delta):
 	position += Vector2.LEFT * delta * speed

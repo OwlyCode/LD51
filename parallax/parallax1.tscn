@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0lthafqqctnm"]
+
+[ext_resource type="Script" path="res://FakeParallax.gd" id="1_ypl5a"]
+[ext_resource type="Texture2D" uid="uid://bnnwgj88l6dy" path="res://arts/parallax1.png" id="2_hey7c"]
+
+[node name="Node2d" type="Node2D"]
+script = ExtResource("1_ypl5a")
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+position = Vector2(0, 58)
+z_index = -50
+texture = ExtResource("2_hey7c")

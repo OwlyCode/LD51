@@ -6,6 +6,10 @@ var chunks = [
 	preload("res://chunks/flat3.tscn"),
 ]
 
+var parallax = [
+	preload("res://parallax/parallax1.tscn"),
+]
+
 const CELL_SIZE = 16
 
 var jump_sizes = [
@@ -20,6 +24,7 @@ var jump_sizes = [
 ]
 
 var last_chunk = null
+var last_parallax = null
 var lowest = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -31,18 +36,34 @@ func _ready():
 func _process(delta):
 	refresh_lowest()
 	fill()
+	fill_parallax()
 
 func fill():
-	if get_child_count() < 8:
+	if $Chunks.get_child_count() < 8:
 		spawn_next()
+
+func fill_parallax():
+	if $FakeParallax.get_child_count() < 8:
+		spawn_parallax()
 
 func refresh_lowest():
 	lowest = INF
-	for child in get_children():
+	for child in $Chunks.get_children():
 		var lw = child.get_node("Lowest").global_position.y
 
 		if lw < lowest:
 			lowest = lw
+
+func spawn_parallax():
+	var rand_index:int = randi() % parallax.size()
+	var instance = parallax[rand_index].instantiate()
+	if last_parallax:
+		instance.global_position = last_parallax.global_position + Vector2(255, lowest)
+
+	$FakeParallax.add_child(instance)
+
+	last_parallax = instance
+
 
 func spawn_next():
 	var rand_index:int = randi() % chunks.size()
@@ -54,6 +75,6 @@ func spawn_next():
 	if last_chunk:
 		instance.global_position = last_chunk.get_node("Exit").global_position - instance.get_node("Entry").position + jump_size
 
-	add_child(instance)
+	$Chunks.add_child(instance)
 
 	last_chunk = instance
