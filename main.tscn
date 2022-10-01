@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c4j6enbgs1r70"]
+[gd_scene load_steps=23 format=3 uid="uid://c4j6enbgs1r70"]
 
 [ext_resource type="Script" path="res://Timer.gd" id="1_asy31"]
 [ext_resource type="PackedScene" uid="uid://c3ijc54xdmkip" path="res://player.tscn" id="2_5gbvf"]
@@ -9,13 +9,20 @@
 [ext_resource type="Texture2D" uid="uid://b6xeowpppo74x" path="res://arts/energy1.png" id="6_wkt4m"]
 [ext_resource type="Texture2D" uid="uid://bmp3jfy84bbto" path="res://arts/energy2.png" id="7_28qcv"]
 [ext_resource type="Texture2D" uid="uid://bhfiyujrkx3up" path="res://arts/background_sky.png" id="7_rtlkq"]
+[ext_resource type="Texture2D" uid="uid://ddbheaqvlvtbn" path="res://arts/space3.png" id="8_5wpf6"]
 [ext_resource type="Texture2D" uid="uid://2nl6inetn5oi" path="res://arts/energy3.png" id="8_gd5dy"]
 [ext_resource type="Texture2D" uid="uid://dmvbsaj8qdpn4" path="res://arts/energy4.png" id="9_1pfty"]
 [ext_resource type="Texture2D" uid="uid://brkcda6v3krnv" path="res://arts/background_buildings.png" id="9_dc4n8"]
 [ext_resource type="Texture2D" uid="uid://vtx10u5018wl" path="res://arts/energy5.png" id="10_q23ut"]
 [ext_resource type="AudioStream" uid="uid://bfs6g3pr5e1w8" path="res://arts/loop.wav" id="11_h8dt2"]
-[ext_resource type="Texture2D" uid="uid://bogxxhbc7mqmg" path="res://arts/space1.png" id="13_736aj"]
 [ext_resource type="Shader" path="res://shaders/noop.gdshader" id="13_iuega"]
+
+[sub_resource type="Gradient" id="Gradient_xuwjs"]
+offsets = PackedFloat32Array(0, 0.950549)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u4cvj"]
+gradient = SubResource("Gradient_xuwjs")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gwh2r"]
 size = Vector2(69, 297)
@@ -62,6 +69,14 @@ current = true
 zoom = Vector2(3, 3)
 script = ExtResource("2_tbqe3")
 
+[node name="Glow" type="Sprite2D" parent="Camera2d"]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0.054902, 0.266667)
+position = Vector2(13, 21)
+scale = Vector2(1.90625, 278)
+z_index = 10
+texture = SubResource("GradientTexture1D_u4cvj")
+
 [node name="AudioListener2d" type="AudioListener2D" parent="Camera2d"]
 
 [node name="StaticBody2d" type="StaticBody2D" parent="Camera2d"]
@@ -91,9 +106,9 @@ texture = ExtResource("7_rtlkq")
 
 [node name="Rift" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 unique_name_in_owner = true
-position = Vector2(-1, -27)
+position = Vector2(0, -21)
 z_index = -50
-texture = ExtResource("13_736aj")
+texture = ExtResource("8_5wpf6")
 
 [node name="Sprite2d2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_filter = 1

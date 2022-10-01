@@ -43,9 +43,10 @@ func _process(delta):
 	if time_left < 2.0:
 		camera.shaking = true
 		camera.shaking_amount = lerp(3.0, 0.1, time_left / 2)
-		print(camera.shaking_amount)
+		%Glow.modulate = Color(1.0, 0.0, 0.0, lerp(0.25, 0.0, time_left / 2))
 	else:
 		camera.shaking = false
+		%Glow.modulate = Color(1.0, 0.0, 0.0, 0.0)
 
 	if time_left < 2.0:
 		%Lasers.modulate = Color.RED.lerp(Color.WHITE, time_left / 2)

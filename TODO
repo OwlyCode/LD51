@@ -1,15 +1,12 @@
 - Minimal version
-    - event every 10s
-        - visual effect of the event
-    - speed up
-    - audio
-        - 10s event build-up
+    - speed up ?
 
 - Improved version
+    - Highscore screen
+    - UI / explanations
     - Intro
         - Very Flat zone + Text
         - Idle char + other scientists ?
-    - Highscore screen
     - level design
         - more blocks
             - lasers ?
@@ -19,8 +16,6 @@
             - sky lasers ?
             - icy world (no friction)
             - flip screen
-    - UI / explanations
-    - parallax background
 
 - Top notch version
     - Ending with a boss fight
