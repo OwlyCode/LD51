@@ -4,19 +4,24 @@ var alive = true
 
 const ALIGN_CORRECTION_FORCE = 100000
 
+var death_cause = ""
+
 func _ready():
 	lock_rotation = true
 	$AnimatedSprite2d.play("Run")
 
-func die():
+func die(death_cause):
 	if alive:
+		death_cause = death_cause
+		%DeathPanel.visible = true
+		%DeathPanel.get_node("Label").text = "You ran %d meters until %s in %s. \n\n Press X to start over." % [%ChunkManager.total_distance, death_cause, %Timer.current_dimension]
 		$DeathSound.play()
+		%Timer.stop()
 		alive = false
 
-func _on_death_sound_finished():
-	get_tree().reload_current_scene()
-
 func _physics_process(delta):
+	if not alive and Input.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
 	if alive and Input.is_action_pressed("right"):
 		set_axis_velocity(Vector2.RIGHT * 150)
 	elif alive and Input.is_action_pressed("left"):

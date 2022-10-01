@@ -11,6 +11,8 @@ var rift1 = preload("res://arts/space1.png")
 var rift2 = preload("res://arts/space2.png")
 var rift3 = preload("res://arts/space3.png")
 
+var current_dimension = "the normal dimension"
+
 @onready var camera = get_node("/root/Node2d/Camera2d")
 
 func _ready():
@@ -88,9 +90,12 @@ func rand_visual_effect():
 
 func grayscale():
 	%ScreenShader.material.shader = preload("res://shaders/grayscale.gdshader")
+	current_dimension = "the grayscale dimension"
 
 func hex():
 	%ScreenShader.material.shader = preload("res://shaders/hex.gdshader")
+	current_dimension = "the HEX dimension"
 
 func reset_visual_effect():
 	%ScreenShader.material.shader = preload("res://shaders/noop.gdshader")
+	current_dimension = "the normal dimension"

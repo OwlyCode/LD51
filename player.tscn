@@ -82,5 +82,3 @@ playing = true
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_muf6v")
-
-[connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]

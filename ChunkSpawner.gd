@@ -35,6 +35,8 @@ var last_chunk = null
 var last_parallax = null
 var lowest = 0
 
+var total_distance = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -47,7 +49,11 @@ func _process(delta):
 	fill_parallax()
 
 	if player.global_position.y > lowest + 200:
-		player.die()
+		player.die("you fell from a very high place")
+
+	if player.alive:
+		total_distance += 6.0 * delta
+		%DistanceDisplay.text = "%dm" % total_distance
 
 func can_scroll():
 	return player.alive

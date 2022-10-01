@@ -45,6 +45,7 @@ shader = ExtResource("13_iuega")
 texture_filter = 1
 
 [node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 10.0
 autostart = true
 script = ExtResource("1_asy31")
@@ -57,6 +58,7 @@ stream = ExtResource("3_svxki")
 pitch_scale = 2.0
 
 [node name="ChunkManager" type="Node2D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_n1x2w")
 
 [node name="FakeParallax" type="Node2D" parent="ChunkManager"]
@@ -137,5 +139,59 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DistanceDisplay" type="Label" parent="CanvasLayer2/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.5
+offset_right = 62.5
+offset_bottom = 53.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 36
+text = "120m"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathPanel" type="Panel" parent="CanvasLayer2/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer2/Control/DeathPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -262.0
+offset_top = -134.0
+offset_right = 262.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "You ran X meters until ..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timer_timeout"]
