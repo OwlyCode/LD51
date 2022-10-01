@@ -6,6 +6,19 @@ var chunks = [
 	preload("res://chunks/flat3.tscn"),
 ]
 
+const CELL_SIZE = 16
+
+var jump_sizes = [
+	Vector2(16, 0), # short
+	Vector2(32, 0), # wide
+	Vector2(48, 0), # very wide
+	Vector2(16, -16), # short up
+	Vector2(16, -32), # wide up
+	Vector2(16, 16), # short down
+	Vector2(16, 32), # wide down
+	Vector2(16, 48), # leap down
+]
+
 var last_chunk = null
 var lowest = 0
 
@@ -33,10 +46,10 @@ func refresh_lowest():
 
 func spawn_next():
 	var rand_index:int = randi() % chunks.size()
-
 	var instance = chunks[rand_index].instantiate()
 
-	var jump_size = Vector2.RIGHT * 16
+	rand_index = randi() % jump_sizes.size()
+	var jump_size = jump_sizes[rand_index]
 
 	if last_chunk:
 		instance.global_position = last_chunk.get_node("Exit").global_position - instance.get_node("Entry").position + jump_size

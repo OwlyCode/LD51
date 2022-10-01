@@ -1,23 +1,21 @@
 extends RigidBody2D
 
-const ALIGN_CORRECTION_FORCE = 1000
+const ALIGN_CORRECTION_FORCE = 100000
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	lock_rotation = true
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if not $VisibleOnScreenNotifier2d.is_on_screen():
+		get_tree().reload_current_scene()
 
 func _physics_process(delta):
-	if position.x < 0:
-		constant_force = Vector2.RIGHT * ALIGN_CORRECTION_FORCE
-	elif position.x > 0:
-		constant_force = Vector2.LEFT * ALIGN_CORRECTION_FORCE
+	if Input.is_action_pressed("right"):
+		set_axis_velocity(Vector2.RIGHT * 150)
+	elif Input.is_action_pressed("left"):
+		set_axis_velocity(Vector2.LEFT * 150)
 	else:
-		constant_force = Vector2.ZERO
+		set_axis_velocity(Vector2.RIGHT)
 
 	if Input.is_action_just_pressed("jump"):
 		if $LeftGroundChecker.is_colliding() or $RightGroundChecker.is_colliding():

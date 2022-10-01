@@ -1,18 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3ijc54xdmkip"]
+[gd_scene load_steps=6 format=3 uid="uid://c3ijc54xdmkip"]
 
 [ext_resource type="Texture2D" uid="uid://dqwnwknka4yjm" path="res://arts/tileset.png" id="1_inwfj"]
 [ext_resource type="Script" path="res://Player.gd" id="1_r28ip"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dmtd2"]
+friction = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptuk1"]
 atlas = ExtResource("1_inwfj")
 region = Rect2(2.91798, -0.27776, 10.082, 16.5781)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_71gn2"]
-radius = 5.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xiens"]
+radius = 4.0
 height = 16.0
 
 [node name="Player" type="RigidBody2D"]
 mass = 80.0
+physics_material_override = SubResource("PhysicsMaterial_dmtd2")
+continuous_cd = 2
 script = ExtResource("1_r28ip")
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
@@ -21,7 +26,7 @@ texture = SubResource("AtlasTexture_ptuk1")
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
-shape = SubResource("CapsuleShape2D_71gn2")
+shape = SubResource("CapsuleShape2D_xiens")
 
 [node name="RightGroundChecker" type="RayCast2D" parent="."]
 position = Vector2(5, 0)
@@ -32,3 +37,7 @@ hit_from_inside = true
 position = Vector2(-5, 0)
 target_position = Vector2(0, 1)
 hit_from_inside = true
+
+[node name="VisibleOnScreenNotifier2d" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(0.5, 0.8)

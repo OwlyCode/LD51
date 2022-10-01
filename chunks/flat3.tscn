@@ -23,4 +23,9 @@ position = Vector2(-32, 0)
 position = Vector2(32, -16)
 
 [node name="Lowest" type="Node2D" parent="."]
-position = Vector2(0, 32)
+position = Vector2(0, 72)
+
+[node name="StaticBody2d" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="StaticBody2d"]
+polygon = PackedVector2Array(16, 0, 16, -16, 32, -16, 32, 32, -32, 32, -32, 0)

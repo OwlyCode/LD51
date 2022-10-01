@@ -1,0 +1,27 @@
+- Minimal version
+    - variable jump sizes
+    - event every 10s
+        - color switch
+        - screen switch
+    - speed up
+    - audio
+        - jump sound
+        - death sound
+        - event sound
+        - music
+
+- Improved version
+    - Highscore screen
+    - level design
+        - more blocks
+            - lasers ?
+            - landmines ?
+        - more events
+            - asteroid shower ?
+            - sky lasers ?
+            - icy world (no friction)
+    - UI / explanations
+    - parallax background
+
+- Top notch version
+    - Ending

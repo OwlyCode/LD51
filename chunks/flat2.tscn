@@ -6,6 +6,11 @@
 [node name="Node2d" type="Node2D"]
 script = ExtResource("1_fgte8")
 
+[node name="StaticBody2d" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="StaticBody2d"]
+polygon = PackedVector2Array(16, 0, 16, 16, 32, 16, 32, 32, -32, 32, -32, 0)
+
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
 tile_set = ExtResource("2_018sf")
@@ -23,4 +28,4 @@ position = Vector2(-32, 0)
 position = Vector2(32, 16)
 
 [node name="Lowest" type="Node2D" parent="."]
-position = Vector2(0, 32)
+position = Vector2(0, 72)
