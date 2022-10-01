@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4j6enbgs1r70"]
+[gd_scene load_steps=16 format=3 uid="uid://c4j6enbgs1r70"]
 
 [ext_resource type="Script" path="res://Timer.gd" id="1_asy31"]
 [ext_resource type="PackedScene" uid="uid://c3ijc54xdmkip" path="res://player.tscn" id="2_5gbvf"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dmvbsaj8qdpn4" path="res://arts/energy4.png" id="9_1pfty"]
 [ext_resource type="Texture2D" uid="uid://vtx10u5018wl" path="res://arts/energy5.png" id="10_q23ut"]
 [ext_resource type="AudioStream" uid="uid://bfs6g3pr5e1w8" path="res://arts/loop.wav" id="11_h8dt2"]
+[ext_resource type="Shader" path="res://shaders/noop.gdshader" id="13_iuega"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n2bjm"]
 animations = [{
@@ -20,6 +21,9 @@ animations = [{
 "name": &"Power",
 "speed": 5.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0uom"]
+shader = ExtResource("13_iuega")
 
 [node name="Node2d" type="Node2D"]
 texture_filter = 1
@@ -70,5 +74,16 @@ playing = true
 [node name="AudioStreamPlayer2d" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_h8dt2")
 autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScreenShader" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_p0uom")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timer_timeout"]
