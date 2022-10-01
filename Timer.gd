@@ -60,6 +60,37 @@ func _process(delta):
 		%Lasers.modulate = Color.WHITE
 
 func _on_timer_timeout():
-	%ScreenShader.material.shader = preload("res://shaders/grayscale.gdshader")
+	reset_visual_effect()
+	var applied_effect = rand_visual_effect()
+
+	current_effects = []
+	current_effects.append(applied_effect)
+
 	$EventEffect.play()
 	buildup_played = false
+
+
+var current_effects = []
+
+func rand_visual_effect():
+	var funcs = [Callable(grayscale), Callable(hex)]
+
+	var rand_index = randi() % funcs.size()
+	var fn = funcs[rand_index]
+
+	if fn in current_effects:
+		return rand_visual_effect()
+
+	fn.call()
+
+	return fn
+
+
+func grayscale():
+	%ScreenShader.material.shader = preload("res://shaders/grayscale.gdshader")
+
+func hex():
+	%ScreenShader.material.shader = preload("res://shaders/hex.gdshader")
+
+func reset_visual_effect():
+	%ScreenShader.material.shader = preload("res://shaders/noop.gdshader")

@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform vec2 size = vec2(16.0, 16.0);
+uniform vec2 size = vec2(8.0, 8.0);
 
 void fragment() {
         vec2 norm_size = size * SCREEN_PIXEL_SIZE;
