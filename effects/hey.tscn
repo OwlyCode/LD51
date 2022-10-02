@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://ov0jxs4bk58x"]
+
+[ext_resource type="Script" path="res://Hey.gd" id="1_2170y"]
+[ext_resource type="Texture2D" uid="uid://byyfgbepyg63x" path="res://arts/hey1.png" id="2_mp0wd"]
+[ext_resource type="Texture2D" uid="uid://6mm1wgk1evh1" path="res://arts/hey2.png" id="3_0sovm"]
+[ext_resource type="AudioStream" uid="uid://g82jtx0t6k64" path="res://arts/heyi.wav" id="4_16hlw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0lgna"]
+animations = [{
+"frames": [ExtResource("2_mp0wd")],
+"loop": true,
+"name": &"Silent",
+"speed": 5.0
+}, {
+"frames": [ExtResource("2_mp0wd"), ExtResource("3_0sovm")],
+"loop": true,
+"name": &"Talking",
+"speed": 5.0
+}]
+
+[node name="Hey" type="Node2D" groups=["hey"]]
+position = Vector2(247, -81)
+script = ExtResource("1_2170y")
+
+[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
+z_index = -60
+frames = SubResource("SpriteFrames_0lgna")
+animation = &"Silent"
+
+[node name="AudioStreamPlayer2d" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_16hlw")
+volume_db = 10.0
+
+[connection signal="finished" from="AudioStreamPlayer2d" to="." method="_on_audio_stream_player_2d_finished"]

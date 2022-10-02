@@ -1,13 +1,11 @@
 - Fixes
     - slow shaders on html5
+    - Robot aim too low
+    - remove death dimension ?
 
 - Improvements
-    - Main menu
-    - key explanations (Press any to start on post-it)
-    - full level
-    - sound control
-    - firing sound for robot
     - better Music
+    - sound control
     - parallax for robot
 
 - Improved version
@@ -15,7 +13,6 @@
         - more events
             - sky lasers ?
             - icy world (no friction)
-            - flip screen
             - skew screen
 
     - afficher la dimension

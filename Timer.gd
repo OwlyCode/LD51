@@ -17,20 +17,23 @@ var rift3 = preload("res://arts/space3.png")
 var current_dimension = "the normal dimension"
 
 @onready var game_sequence = [
+	[Callable(hey)],
+	[Callable(camera_flip_V)],
+	[Callable(camera_flip_H)],
+	[Callable(robot)],
+	# True start
+	[Callable(grayscale)],
+	[Callable(noop)],
+	[Callable(hex)], # Find something nice
 	[Callable(speed_up), Callable(increase_jump)],
-	[Callable(speed_up), Callable(increase_jump)],
-	[Callable(speed_up), Callable(increase_jump)],
-	[Callable(speed_up), Callable(increase_jump)],
+	[Callable(asteroids)],
 	[Callable(speed_up)],
+	[Callable(robot)],
 	[Callable(speed_up)],
-	[Callable(speed_up)],
-	[Callable(speed_up)],
-	# [Callable(grayscale)],
-	# [Callable(noop)],
-	# [Callable(crt)],
-	# [Callable(asteroids)],
-	# [Callable(noop)],
-	# [Callable(crt), Callable(asteroids)],
+	[Callable(crt)],
+	[Callable(asteroids), Callable(speed_up), Callable(increase_jump)],
+	[Callable(robot), Callable(crt), Callable(speed_up)],
+	[Callable(increase_jump)]
 ]
 
 @onready var camera = get_node("/root/Node2d/Camera2d")
@@ -171,6 +174,8 @@ func robot():
 	rb.global_position = Vector2(150, 150)
 
 func reset_game_effects():
+	%Camera2d.zoom = Vector2(3, 3)
+
 	var parallaxes = get_tree().get_nodes_in_group("parallax")
 
 	for p in parallaxes:
@@ -183,9 +188,27 @@ func reset_game_effects():
 	for r in robots:
 		r.queue_free()
 
+	var hey = get_tree().get_nodes_in_group("hey")
+
+	for h in hey:
+		h.queue_free()
+
 func speed_up():
 	%ChunkManager.speed_modifier += 0.1
 
 
 func increase_jump():
 	%ChunkManager.jump_modifier += 1
+
+
+func camera_flip_V():
+	%Camera2d.zoom = Vector2(3, -3)
+
+func camera_flip_H():
+	%Camera2d.zoom = Vector2(-3, 3)
+
+func hey():
+	var hey = preload("res://effects/hey.tscn")
+	var h = hey.instantiate()
+	get_tree().root.add_child(h)
+	h.global_position = Vector2(220, 50)
