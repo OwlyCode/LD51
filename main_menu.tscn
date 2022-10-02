@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://hy7mah0cj6kw"]
+[gd_scene load_steps=7 format=3 uid="uid://hy7mah0cj6kw"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_eu3w3"]
 [ext_resource type="Texture2D" uid="uid://d1k3h0qrdkkki" path="res://arts/ui.png" id="1_p1dnq"]
 [ext_resource type="Texture2D" uid="uid://biiintg4r82yc" path="res://arts/menu_bg.png" id="2_8kqoo"]
 [ext_resource type="Theme" uid="uid://cet4cydqv5qvc" path="res://main_menu_theme.tres" id="3_n7q3m"]
+[ext_resource type="PackedScene" uid="uid://c86m46k0dlrxk" path="res://sound_control.tscn" id="5_0vv3s"]
+[ext_resource type="AudioStream" uid="uid://bfs6g3pr5e1w8" path="res://arts/loop.wav" id="6_1dmq3"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -111,6 +113,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_n7q3m")
 text = "Quit"
+
+[node name="HSlider" parent="." instance=ExtResource("5_0vv3s")]
+
+[node name="AudioStreamPlayer2d" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_1dmq3")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer2/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer2/Quit" to="." method="_on_quit_pressed"]

@@ -89,11 +89,18 @@ func _on_timer_timeout():
 	else:
 		event_count += 1
 
-		var applied_visual_effect = rand_visual_effect()
+		var applied_visual_effect = null
+
+		if event_count % 3 == 0:
+			applied_visual_effect = rand_visual_effect()
+
 		var applied_game_effect = rand_game_effect()
 
 		current_effects = []
-		current_effects.append(applied_visual_effect)
+
+		if applied_visual_effect:
+			current_effects.append(applied_visual_effect)
+
 		current_effects.append(applied_game_effect)
 
 		if event_count % 2 == 0:
@@ -110,7 +117,7 @@ func _on_timer_timeout():
 var current_effects = []
 
 func rand_visual_effect():
-	var funcs = [Callable(grayscale), Callable(hex), Callable(crt), Callable(noop)]
+	var funcs = [Callable(grayscale), Callable(hex), Callable(crt), Callable(noop), Callable(color_switch)]
 
 	var rand_index = randi() % funcs.size()
 	var fn = funcs[rand_index]
@@ -140,19 +147,18 @@ func noop():
 
 func grayscale():
 	%ScreenShader.material.shader = preload("res://shaders/grayscale.gdshader")
-	current_dimension = "the grayscale dimension"
 
 func hex():
 	%ScreenShader.material.shader = preload("res://shaders/hex.gdshader")
-	current_dimension = "the HEX dimension"
 
 func crt():
 	%ScreenShader.material.shader = preload("res://shaders/crt.gdshader")
-	current_dimension = "the CRT dimension"
+
+func color_switch():
+	%ScreenShader.material.shader = preload("res://shaders/invert.gdshader")
 
 func reset_visual_effect():
 	%ScreenShader.material.shader = preload("res://shaders/noop.gdshader")
-	current_dimension = "the normal dimension"
 
 func asteroids():
 	var parallaxes = get_tree().get_nodes_in_group("parallax")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://c86m46k0dlrxk"]
+
+[ext_resource type="Script" path="res://SoundController.gd" id="1_sf60x"]
+
+[node name="HSlider" type="HSlider"]
+offset_left = 1057.0
+offset_top = 15.0
+offset_right = 1182.0
+offset_bottom = 31.0
+max_value = 1.0
+step = 0.03
+script = ExtResource("1_sf60x")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -73.0
+offset_top = -5.0
+offset_right = -14.0
+offset_bottom = 21.0
+text = "Volume"
+
+[connection signal="value_changed" from="." to="." method="_on_h_slider_value_changed"]
