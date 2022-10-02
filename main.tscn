@@ -15,8 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://dmvbsaj8qdpn4" path="res://arts/energy4.png" id="9_1pfty"]
 [ext_resource type="Texture2D" uid="uid://brkcda6v3krnv" path="res://arts/background_buildings.png" id="9_dc4n8"]
 [ext_resource type="Texture2D" uid="uid://vtx10u5018wl" path="res://arts/energy5.png" id="10_q23ut"]
-[ext_resource type="AudioStream" uid="uid://bfs6g3pr5e1w8" path="res://arts/loop.wav" id="11_h8dt2"]
 [ext_resource type="Shader" path="res://shaders/noop.gdshader" id="13_iuega"]
+[ext_resource type="AudioStream" uid="uid://irgokd10nmye" path="res://arts/loop2.wav" id="16_f6gbk"]
 [ext_resource type="Texture2D" uid="uid://d1k3h0qrdkkki" path="res://arts/ui.png" id="17_fa37l"]
 [ext_resource type="PackedScene" uid="uid://c86m46k0dlrxk" path="res://sound_control.tscn" id="19_3ycil"]
 
@@ -136,7 +136,7 @@ animation = &"Power"
 playing = true
 
 [node name="AudioStreamPlayer2d" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_h8dt2")
+stream = ExtResource("16_f6gbk")
 autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -162,7 +162,6 @@ grow_vertical = 2
 
 [node name="DistanceDisplay" type="Label" parent="CanvasLayer2/Control"]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -177,7 +176,6 @@ vertical_alignment = 1
 [node name="DeathPanel" type="Panel" parent="CanvasLayer2/Control"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -185,7 +183,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer2/Control/DeathPanel"]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -205,7 +202,6 @@ autowrap_mode = 2
 
 [node name="Intro" type="Panel" parent="CanvasLayer2/Control"]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -213,7 +209,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer2/Control/Intro"]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -237,7 +232,6 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer2/Control/Intro"]
-layout_mode = 0
 offset_left = 877.0
 offset_top = 337.0
 offset_right = 1175.0
@@ -245,6 +239,5 @@ offset_bottom = 617.0
 texture = ExtResource("17_fa37l")
 
 [node name="HSlider" parent="CanvasLayer2/Control" instance=ExtResource("19_3ycil")]
-layout_mode = 1
 
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timer_timeout"]
