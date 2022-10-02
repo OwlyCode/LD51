@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bex86vy8ta4t5"]
+
+[ext_resource type="Script" path="res://effects/robot_bullet.gd" id="1_1xr4p"]
+
+[sub_resource type="Curve" id="Curve_oedqr"]
+_data = [Vector2(0.0491071, 0.178771), 0.0, 0.22461, 0, 0, Vector2(1, 1), -0.0750837, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dq37q"]
+radius = 4.0
+
+[node name="Line2d" type="Line2D"]
+points = PackedVector2Array(0, 0, -8, 0)
+width = 3.0
+width_curve = SubResource("Curve_oedqr")
+script = ExtResource("1_1xr4p")
+
+[node name="RayCast2d" type="RayCast2D" parent="."]
+target_position = Vector2(-10, 0)
+
+[node name="Area2d" type="Area2D" parent="."]
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Area2d"]
+position = Vector2(-5, 0)
+shape = SubResource("CircleShape2D_dq37q")

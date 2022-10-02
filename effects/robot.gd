@@ -3,6 +3,7 @@ extends Node2D
 var desired_offset = -80.0
 
 enum Status {
+	FIRING,
 	AIMING,
 	IDLING,
 	LOCKING,
@@ -10,24 +11,29 @@ enum Status {
 
 const AIMING_TIME = 2.0
 const IDLING_TIME = 1.0
-const LOCKING_TIME = 1.0
+const LOCKING_TIME = 0.1
+const FIRING_TIME = 0.07
 
 var timer = IDLING_TIME
+var fire_count = 0
 var status = Status.IDLING
 
 @onready var player = get_node("/root/Node2d/Player")
+@onready var raycast = $Gun.get_node("RayCast2d")
+
+var bullet = preload("res://effects/robot_bullet.tscn")
+
+var locked_target
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Gun.get_node("Line2d").visible = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (global_position.y != player.global_position.y + desired_offset) and player.alive:
 		global_position.y = lerp(global_position.y, player.global_position.y + desired_offset, delta)
 
-	var raycast = $Gun.get_node("RayCast2d")
 	var line = $Gun.get_node("Line2d")
 
 	if raycast.is_colliding():
@@ -46,12 +52,30 @@ func _process(delta):
 		timer = AIMING_TIME
 		line.visible = true
 
-	if status == Status.AIMING and timer < 0:
+	if status == Status.AIMING and timer < 0 and raycast.get_collider().has_method("die"):
+		locked_target = raycast.get_collision_point()
 		status = Status.LOCKING
 		timer = LOCKING_TIME
 		line.visible = true
 
 	if status == Status.LOCKING and timer < 0:
-		status = Status.IDLING
-		timer = IDLING_TIME
+		status = Status.FIRING
+		timer = FIRING_TIME
 		line.visible = false
+
+	if status == Status.FIRING and timer < 0:
+		if fire_count > 2:
+			fire_count = 0
+			status = Status.IDLING
+			timer = IDLING_TIME
+			line.visible = false
+		else:
+			timer = FIRING_TIME
+			fire_count += 1
+			fire()
+
+
+func fire():
+	var b = bullet.instantiate()
+	b.target_position = locked_target
+	add_child(b)
