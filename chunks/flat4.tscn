@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://clob8y55j5jsq"]
+
+[ext_resource type="Script" path="res://chunks/chunk.gd" id="1_fgte8"]
+[ext_resource type="Texture2D" uid="uid://di4svvq2pcb65" path="res://arts/platforms-normal-4.png" id="2_ocrow"]
+
+[node name="Node2d" type="Node2D"]
+script = ExtResource("1_fgte8")
+
+[node name="Entry" type="Node2D" parent="."]
+position = Vector2(-31, 0)
+
+[node name="Exit" type="Node2D" parent="."]
+position = Vector2(481, 0)
+
+[node name="StaticBody2d" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="StaticBody2d"]
+position = Vector2(225, 80)
+polygon = PackedVector2Array(80, -80, 256, -80, 256, 192, -256, 192, -256, -80, -128, -80, -128, -96, -48, -96, -48, -80, 32, -80, 32, -128, -16, -128, -16, -144, 32, -144, 32, -192, 112, -192, 112, -176, 80, -176)
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+position = Vector2(225, 80)
+texture = ExtResource("2_ocrow")

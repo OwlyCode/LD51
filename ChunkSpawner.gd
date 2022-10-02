@@ -4,7 +4,18 @@ var chunks = [
 	preload("res://chunks/flat.tscn"),
 	preload("res://chunks/flat2.tscn"),
 	preload("res://chunks/flat3.tscn"),
+	preload("res://chunks/flat4.tscn"),
 ]
+
+var possible_chunks = [
+	[4.0, preload("res://chunks/flat.tscn")],
+	[1.0, preload("res://chunks/flat2.tscn")],
+	[1.0, preload("res://chunks/flat3.tscn")],
+	[1.0, preload("res://chunks/flat4.tscn")],
+]
+
+var weighted_chunks = []
+var max_chunk_dice_roll = 1.0
 
 var parallax = [
 	preload("res://parallax/parallax1.tscn"),
@@ -41,12 +52,17 @@ var idling = true
 
 var first_chunk = true
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var offset = 0.0
+
+	for x in possible_chunks:
+		weighted_chunks.append([offset, x[1]])
+		offset += x[0]
+
+	weighted_chunks.reverse()
+	self.max_chunk_dice_roll = offset
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	refresh_lowest()
 	fill()
@@ -58,6 +74,15 @@ func _process(delta):
 	if can_scroll():
 		total_distance += 6.0 * delta
 		%DistanceDisplay.text = "%dm" % total_distance
+
+func roll_chunk():
+	var roll = randf_range(0.0, max_chunk_dice_roll)
+
+	for x in weighted_chunks:
+		if x[0] < roll:
+			return x[1]
+
+	return null
 
 func can_scroll():
 	return player.alive and not idling
@@ -92,13 +117,15 @@ func spawn_parallax():
 
 
 func spawn_next():
-	var rand_index:int = randi() % chunks.size()
+	var prefab
 
 	if first_chunk:
-		rand_index = 0
 		first_chunk = false
+		prefab = preload("res://chunks/flat.tscn")
+	else:
+		prefab = roll_chunk()
 
-	var instance = chunks[rand_index].instantiate()
+	var instance = prefab.instantiate()
 
 
 	var jump_sizes = jump_flat
@@ -110,7 +137,7 @@ func spawn_next():
 	else:
 		jump_sizes = jump_flat + jump_up + jump_down
 
-	rand_index = randi() % jump_sizes.size()
+	var rand_index = randi() % jump_sizes.size()
 	var jump_size = jump_sizes[rand_index]
 
 	if last_chunk:

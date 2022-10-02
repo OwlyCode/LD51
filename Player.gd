@@ -40,9 +40,7 @@ func _physics_process(delta):
 	if %ChunkManager.idling and (Input.is_action_pressed("right") or Input.is_action_pressed("left") or Input.is_action_pressed("jump")):
 		%ChunkManager.idling = false
 		%Intro.visible = false
-		%Timer.start()
-
-
+		%Timer.paused = false
 
 	if alive and Input.is_action_pressed("right"):
 		set_axis_velocity(Vector2.RIGHT * 150)
