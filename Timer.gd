@@ -17,6 +17,8 @@ var rift3 = preload("res://arts/space3.png")
 var current_dimension = "the normal dimension"
 
 @onready var game_sequence = [
+	[Callable(asteroids)],
+
 	# [Callable(grayscale)],
 	# [Callable(noop)],
 	# [Callable(crt)],
@@ -147,7 +149,18 @@ func reset_visual_effect():
 	current_dimension = "the normal dimension"
 
 func asteroids():
+	var parallaxes = get_tree().get_nodes_in_group("parallax")
+
+	parallaxes.shuffle()
+
+	parallaxes[0].get_node("Sprite2d").texture = preload("res://arts/parallax-asteroids.png")
+
 	%AsteroidSpawner.asteroids_enabled = true
 
 func reset_game_effects():
+	var parallaxes = get_tree().get_nodes_in_group("parallax")
+
+	for p in parallaxes:
+		p.get_node("Sprite2d").texture = preload("res://arts/parallax1.png")
+
 	%AsteroidSpawner.asteroids_enabled = false

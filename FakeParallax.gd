@@ -7,5 +7,5 @@ func _process(delta):
 		position += Vector2.LEFT * delta * speed
 
 func _physics_process(delta):
-	if global_position.x < -300:
+	if global_position.x < -400:
 		queue_free()

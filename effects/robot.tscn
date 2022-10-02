@@ -1,0 +1,44 @@
+[gd_scene load_steps=10 format=3 uid="uid://3f4432f15s4f"]
+
+[ext_resource type="Script" path="res://effects/robot.gd" id="1_iajkw"]
+[ext_resource type="Texture2D" uid="uid://idw745kmn64" path="res://arts/robot1.png" id="1_l4agk"]
+[ext_resource type="Texture2D" uid="uid://b5ikxnjvbwkmr" path="res://arts/robot2.png" id="2_klb2g"]
+[ext_resource type="Texture2D" uid="uid://bof7msbiuqqwj" path="res://arts/robot3.png" id="3_4ptkx"]
+[ext_resource type="Texture2D" uid="uid://d06gykptsk5ot" path="res://arts/robot4.png" id="4_1eakj"]
+[ext_resource type="Texture2D" uid="uid://124kqcskghbn" path="res://arts/robot5.png" id="5_ns7y2"]
+[ext_resource type="Texture2D" uid="uid://dkoy6d6wn0j60" path="res://arts/robot6.png" id="6_xd885"]
+[ext_resource type="Texture2D" uid="uid://d1tuvirw18kb1" path="res://arts/robot_gun.png" id="7_4ygfj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ou2wt"]
+animations = [{
+"frames": [ExtResource("1_l4agk"), ExtResource("2_klb2g"), ExtResource("3_4ptkx"), ExtResource("4_1eakj"), ExtResource("5_ns7y2"), ExtResource("6_xd885")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Robot" type="Node2D"]
+position = Vector2(166, -97)
+script = ExtResource("1_iajkw")
+
+[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_ou2wt")
+playing = true
+
+[node name="Gun" type="Node2D" parent="."]
+position = Vector2(6, -2)
+rotation = -0.322886
+
+[node name="Sprite2d" type="Sprite2D" parent="Gun"]
+position = Vector2(-7, 2)
+texture = ExtResource("7_4ygfj")
+
+[node name="Line2d" type="Line2D" parent="Gun"]
+position = Vector2(-24.033, -0.5)
+width = 0.5
+default_color = Color(1, 0.0235294, 0, 0.564706)
+
+[node name="RayCast2d" type="RayCast2D" parent="Gun"]
+position = Vector2(-0.948318, -0.317307)
+rotation = 1.5708
+target_position = Vector2(0, 500)

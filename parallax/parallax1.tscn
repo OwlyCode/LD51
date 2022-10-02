@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://FakeParallax.gd" id="1_ypl5a"]
 [ext_resource type="Texture2D" uid="uid://bnnwgj88l6dy" path="res://arts/parallax1.png" id="2_hey7c"]
 
-[node name="Node2d" type="Node2D"]
+[node name="Node2d" type="Node2D" groups=["parallax"]]
 script = ExtResource("1_ypl5a")
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
