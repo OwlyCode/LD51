@@ -2,8 +2,8 @@ extends Node2D
 
 var chunks = [
 	preload("res://chunks/flat.tscn"),
-	#preload("res://chunks/flat2.tscn"), TODO DEBUG
-	#preload("res://chunks/flat3.tscn"), TODO DEBUG
+	preload("res://chunks/flat2.tscn"),
+	preload("res://chunks/flat3.tscn"),
 ]
 
 var parallax = [
@@ -73,7 +73,7 @@ func fill_parallax():
 func refresh_lowest():
 	lowest = INF
 	for child in $Chunks.get_children():
-		var lw = child.get_node("Lowest").global_position.y
+		var lw = child.global_position.y + 64
 
 		if lw < lowest:
 			lowest = lw

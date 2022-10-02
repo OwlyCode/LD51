@@ -53,7 +53,7 @@ func _process(delta):
 		camera.shaking = true
 		camera.shaking_amount = lerp(3.0, 0.1, time_left / 2)
 		%Glow.visible = true
-		%Glow.modulate = Color(1.0, 0.0, 0.0, lerp(0.25, 0.0, time_left / 2))
+		%Glow.modulate = Color(1.0, 0.0, 0.0, lerp(0.5, 0.0, time_left / 2))
 	else:
 		camera.shaking = false
 		%Glow.modulate = Color(1.0, 0.0, 0.0, 0.0)

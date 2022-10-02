@@ -17,9 +17,6 @@ position = Vector2(-32, 0)
 [node name="Exit" type="Node2D" parent="."]
 position = Vector2(289, 0)
 
-[node name="Lowest" type="Node2D" parent="."]
-position = Vector2(0, 40)
-
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(128, 64)

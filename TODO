@@ -1,6 +1,7 @@
 - Fixes
     - Infinite jump at the edge
     - slow shaders on html5
+    - Clipping through walls when blocked and going offscreen left
 
 - Improved version
     - key explanations
