@@ -11,7 +11,7 @@ var possible_chunks = [
 	[4.0, preload("res://chunks/flat.tscn")],
 	[1.0, preload("res://chunks/flat2.tscn")],
 	[1.0, preload("res://chunks/flat3.tscn")],
-	[1.0, preload("res://chunks/flat4.tscn")],
+	[0.5, preload("res://chunks/flat4.tscn")],
 ]
 
 var weighted_chunks = []
@@ -24,20 +24,20 @@ var parallax = [
 const CELL_SIZE = 16
 
 var jump_flat = [
-	Vector2(3, 0), # short
-	Vector2(4, 0), # wide
-	Vector2(5, 0), # very wide
+	Vector2(7, 0), # short
+	Vector2(9, 0), # wide
+	Vector2(11, 0), # very wide
 ]
 
 var jump_up = [
-	Vector2(3, -1), # short up
-	Vector2(3, -2), # wide up
+	Vector2(5, -1), # short up
+	Vector2(7, -2), # wide up
 ]
 
 var jump_down = [
-	Vector2(3, 1), # short down
-	Vector2(3, 2), # wide down
-	Vector2(3, 3), # leap down
+	Vector2(9, 1), # short down
+	Vector2(11, 2), # wide down
+	Vector2(13, 3), # leap down
 ]
 
 @onready var player = get_node("/root/Node2d/Player")
@@ -51,6 +51,9 @@ var total_distance = 0.0
 var idling = true
 
 var first_chunk = true
+
+var speed_modifier = 0.7
+var jump_modifier = 0
 
 func _ready():
 	var offset = 0.0
@@ -98,7 +101,7 @@ func fill_parallax():
 func refresh_lowest():
 	lowest = INF
 	for child in $Chunks.get_children():
-		var lw = child.global_position.y + 64
+		var lw = child.global_position.y + 80
 
 		if lw < lowest:
 			lowest = lw
@@ -141,7 +144,7 @@ func spawn_next():
 	var jump_size = jump_sizes[rand_index]
 
 	if last_chunk:
-		instance.global_position = last_chunk.get_node("Exit").global_position - instance.get_node("Entry").position + jump_size * CELL_SIZE
+		instance.global_position = last_chunk.get_node("Exit").global_position - instance.get_node("Entry").position + jump_size * CELL_SIZE + Vector2(jump_modifier * CELL_SIZE, 0)
 
 	$Chunks.add_child(instance)
 

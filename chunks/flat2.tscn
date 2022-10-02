@@ -1,27 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctmt2a0vqufac"]
+[gd_scene load_steps=5 format=3 uid="uid://ctmt2a0vqufac"]
 
 [ext_resource type="Script" path="res://chunks/chunk.gd" id="1_fgte8"]
+[ext_resource type="Script" path="res://PlayerZoneKiller.gd" id="3_cc4ig"]
 [ext_resource type="Texture2D" uid="uid://djyyecra4ti3h" path="res://arts/platforms-normal-2.png" id="3_ov14a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m81pi"]
+size = Vector2(8, 126)
 
 [node name="Node2d" type="Node2D"]
 script = ExtResource("1_fgte8")
 
 [node name="StaticBody2d" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="StaticBody2d"]
-position = Vector2(225, 105)
-polygon = PackedVector2Array(128, -152, -48, -152, -48, -168, 128, -168)
-
 [node name="CollisionPolygon2d2" type="CollisionPolygon2D" parent="StaticBody2d"]
-position = Vector2(225, 105)
-polygon = PackedVector2Array(-112, -104, 16, -104, 16, -120, 64, -120, 64, -104, 256, -104, 256, 168, -256, 168, -256, -104, -144, -104, -144, -152, -112, -152)
+position = Vector2(225, 104)
+polygon = PackedVector2Array(-128, -104, -128, -72, -112, -72, -112, -40, 80, -40, 80, -72, 256, -72, 256, 216, -256, 216, -256, -104)
+
+[node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="StaticBody2d"]
+position = Vector2(32, 0)
+polygon = PackedVector2Array(177, -112, 225, -112, 225, 32, 177, 32)
 
 [node name="Entry" type="Node2D" parent="."]
-position = Vector2(-31, 1)
+position = Vector2(-31, 0)
 
 [node name="Exit" type="Node2D" parent="."]
-position = Vector2(481, 1)
+position = Vector2(481, 32)
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
-position = Vector2(225, 105)
+position = Vector2(225, 104)
 texture = ExtResource("3_ov14a")
+
+[node name="Area2d" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("3_cc4ig")
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Area2d"]
+position = Vector2(205, -33)
+shape = SubResource("RectangleShape2D_m81pi")
+
+[connection signal="body_entered" from="Area2d" to="Area2d" method="_on_area_2d_body_entered"]

@@ -45,7 +45,7 @@ func _physics_process(delta):
 	if alive and Input.is_action_pressed("right"):
 		set_axis_velocity(Vector2.RIGHT * 150)
 	elif alive and Input.is_action_pressed("left"):
-		set_axis_velocity(Vector2.LEFT * 150)
+		set_axis_velocity(Vector2.LEFT * (250 * %ChunkManager.speed_modifier))
 	elif alive:
 		set_axis_velocity(Vector2.RIGHT)
 

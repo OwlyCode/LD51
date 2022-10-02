@@ -1,15 +1,17 @@
 - Fixes
     - slow shaders on html5
 
-- Improved version
+- Improvements
+    - Main menu
     - key explanations (Press any to start on post-it)
-    - speed up ?
+    - full level
+    - firing sound for robot
+    - better Music
+    - parallax for robot
+
+- Improved version
     - level design
-        - more blocks
-            - lasers ?
-            - landmines ?
         - more events
-            - robots
             - sky lasers ?
             - icy world (no friction)
             - flip screen

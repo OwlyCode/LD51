@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://jgoit60r3dwi"]
 
 [ext_resource type="Script" path="res://chunks/chunk.gd" id="1_fgte8"]
-[ext_resource type="Texture2D" uid="uid://cqs3t6raeemr7" path="res://arts/flat1.png" id="2_6kpvm"]
+[ext_resource type="Texture2D" uid="uid://bncj7atbug61h" path="res://arts/platforms-normal-1.png" id="2_fyfaj"]
 
 [node name="Node2d" type="Node2D"]
 script = ExtResource("1_fgte8")
@@ -9,15 +9,16 @@ script = ExtResource("1_fgte8")
 [node name="StaticBody2d" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="StaticBody2d"]
-polygon = PackedVector2Array(288, 0, 288, 128, -32, 128, -32, 0)
+position = Vector2(234.6, 160)
+polygon = PackedVector2Array(256, 160, -256, 160, -256, -160, 256, -160)
 
 [node name="Entry" type="Node2D" parent="."]
-position = Vector2(-32, 0)
+position = Vector2(-21.4, 0)
 
 [node name="Exit" type="Node2D" parent="."]
-position = Vector2(289, 0)
+position = Vector2(490.6, 0)
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(128, 64)
-texture = ExtResource("2_6kpvm")
+position = Vector2(234.6, 160)
+texture = ExtResource("2_fyfaj")

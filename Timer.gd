@@ -17,8 +17,14 @@ var rift3 = preload("res://arts/space3.png")
 var current_dimension = "the normal dimension"
 
 @onready var game_sequence = [
-	[Callable(robot)],
-
+	[Callable(speed_up), Callable(increase_jump)],
+	[Callable(speed_up), Callable(increase_jump)],
+	[Callable(speed_up), Callable(increase_jump)],
+	[Callable(speed_up), Callable(increase_jump)],
+	[Callable(speed_up)],
+	[Callable(speed_up)],
+	[Callable(speed_up)],
+	[Callable(speed_up)],
 	# [Callable(grayscale)],
 	# [Callable(noop)],
 	# [Callable(crt)],
@@ -176,3 +182,10 @@ func reset_game_effects():
 
 	for r in robots:
 		r.queue_free()
+
+func speed_up():
+	%ChunkManager.speed_modifier += 0.1
+
+
+func increase_jump():
+	%ChunkManager.jump_modifier += 1
