@@ -31,6 +31,10 @@ func _ready():
 
 
 func _process(delta):
+	var wr = weakref(player);
+	if not wr.get_ref():
+		return
+
 	if (global_position.y != player.global_position.y + desired_offset) and player.alive:
 		global_position.y = lerp(global_position.y, player.global_position.y + desired_offset, delta)
 
@@ -52,7 +56,7 @@ func _process(delta):
 		timer = AIMING_TIME
 		line.visible = true
 
-	if status == Status.AIMING and timer < 0 and raycast.get_collider().has_method("die"):
+	if status == Status.AIMING and timer < 0 and raycast.get_collider() and raycast.get_collider().has_method("die"):
 		locked_target = raycast.get_collision_point()
 		status = Status.LOCKING
 		timer = LOCKING_TIME

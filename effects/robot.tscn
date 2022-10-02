@@ -17,7 +17,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Robot" type="Node2D"]
+[node name="Robot" type="Node2D" groups=["robot"]]
 position = Vector2(166, -97)
 script = ExtResource("1_iajkw")
 

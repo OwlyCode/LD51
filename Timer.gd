@@ -17,7 +17,7 @@ var rift3 = preload("res://arts/space3.png")
 var current_dimension = "the normal dimension"
 
 @onready var game_sequence = [
-	[Callable(asteroids)],
+	[Callable(robot)],
 
 	# [Callable(grayscale)],
 	# [Callable(noop)],
@@ -31,6 +31,7 @@ var current_dimension = "the normal dimension"
 
 func _ready():
 	reset_visual_effect()
+	reset_game_effects()
 
 const MAX_BLINK_SPEED = 0.125
 const MIN_BLINK_SPEED = 0.025
@@ -117,7 +118,7 @@ func rand_visual_effect():
 	return fn
 
 func rand_game_effect():
-	var funcs = [Callable(asteroids), Callable(noop)]
+	var funcs = [Callable(asteroids), Callable(robot), Callable(noop)]
 
 	var rand_index = randi() % funcs.size()
 	var fn = funcs[rand_index]
@@ -157,6 +158,12 @@ func asteroids():
 
 	%AsteroidSpawner.asteroids_enabled = true
 
+func robot():
+	var robot_prefab = preload("res://effects/robot.tscn")
+	var rb = robot_prefab.instantiate()
+	get_tree().root.add_child(rb)
+	rb.global_position = Vector2(150, 150)
+
 func reset_game_effects():
 	var parallaxes = get_tree().get_nodes_in_group("parallax")
 
@@ -164,3 +171,8 @@ func reset_game_effects():
 		p.get_node("Sprite2d").texture = preload("res://arts/parallax1.png")
 
 	%AsteroidSpawner.asteroids_enabled = false
+
+	var robots = get_tree().get_nodes_in_group("robot")
+
+	for r in robots:
+		r.queue_free()

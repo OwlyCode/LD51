@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c4j6enbgs1r70"]
+[gd_scene load_steps=25 format=3 uid="uid://c4j6enbgs1r70"]
 
 [ext_resource type="Script" path="res://Timer.gd" id="1_asy31"]
 [ext_resource type="PackedScene" uid="uid://c3ijc54xdmkip" path="res://player.tscn" id="2_5gbvf"]
@@ -18,7 +18,6 @@
 [ext_resource type="AudioStream" uid="uid://bfs6g3pr5e1w8" path="res://arts/loop.wav" id="11_h8dt2"]
 [ext_resource type="Shader" path="res://shaders/noop.gdshader" id="13_iuega"]
 [ext_resource type="Texture2D" uid="uid://d1k3h0qrdkkki" path="res://arts/ui.png" id="17_fa37l"]
-[ext_resource type="PackedScene" uid="uid://3f4432f15s4f" path="res://effects/robot.tscn" id="19_eg5b2"]
 
 [sub_resource type="Gradient" id="Gradient_xuwjs"]
 offsets = PackedFloat32Array(0, 0.950549)
@@ -238,8 +237,5 @@ offset_top = 224.0
 offset_right = 1007.0
 offset_bottom = 499.0
 texture = ExtResource("17_fa37l")
-
-[node name="Robot" parent="." instance=ExtResource("19_eg5b2")]
-position = Vector2(142, -97)
 
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timer_timeout"]
