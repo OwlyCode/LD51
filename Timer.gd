@@ -11,9 +11,10 @@ var event_count = 0
 @onready var game_sequence = [
 	[Callable(grayscale)],
 	[Callable(speed_up), Callable(increase_jump)],
+	[Callable(asteroids)],
 	[Callable(hex)],
 	[Callable(speed_up)],
-	[Callable(asteroids)],
+	[Callable(camera_flip_V)],
 	[Callable(speed_up),Callable(color_switch)],
 	[Callable(robot)],
 	[Callable(speed_up)],

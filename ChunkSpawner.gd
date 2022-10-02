@@ -24,20 +24,20 @@ var parallax = [
 const CELL_SIZE = 16
 
 var jump_flat = [
-	Vector2(7, 0), # short
-	Vector2(9, 0), # wide
-	Vector2(11, 0), # very wide
+	Vector2(6, 0), # short
+	Vector2(8, 0), # wide
+	Vector2(10, 0), # very wide
 ]
 
 var jump_up = [
-	Vector2(5, -1), # short up
-	Vector2(7, -2), # wide up
+	Vector2(4, -1), # short up
+	Vector2(6, -2), # wide up
 ]
 
 var jump_down = [
-	Vector2(9, 1), # short down
-	Vector2(11, 2), # wide down
-	Vector2(13, 3), # leap down
+	Vector2(8, 1), # short down
+	Vector2(10, 2), # wide down
+	Vector2(12, 3), # leap down
 ]
 
 @onready var player = get_node("/root/Node2d/Player")
