@@ -9,13 +9,12 @@ var current_dimension = "the normal dimension"
 var event_count = 0
 
 @onready var game_sequence = [
-	[Callable(color_switch)],
 	[Callable(grayscale)],
 	[Callable(speed_up), Callable(increase_jump)],
 	[Callable(hex)],
 	[Callable(speed_up)],
 	[Callable(asteroids)],
-	[Callable(speed_up)],
+	[Callable(speed_up),Callable(color_switch)],
 	[Callable(robot)],
 	[Callable(speed_up)],
 	[Callable(crt)],
