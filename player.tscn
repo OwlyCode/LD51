@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3ijc54xdmkip"]
+[gd_scene load_steps=14 format=3 uid="uid://c3ijc54xdmkip"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_r28ip"]
 [ext_resource type="AudioStream" uid="uid://b7b7gn4k4lyfm" path="res://arts/jump.wav" id="3_ry5eg"]
@@ -9,8 +9,12 @@
 friction = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xiens"]
-radius = 4.0
-height = 16.0
+radius = 9.0
+height = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mo5q"]
+atlas = ExtResource("4_kyhtt")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_870oa"]
 atlas = ExtResource("4_kyhtt")
@@ -34,7 +38,7 @@ region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pmy0w"]
 animations = [{
-"frames": [],
+"frames": [SubResource("AtlasTexture_2mo5q")],
 "loop": true,
 "name": &"Die",
 "speed": 5.0
@@ -62,17 +66,27 @@ continuous_cd = 2
 script = ExtResource("1_r28ip")
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_xiens")
 
 [node name="RightGroundChecker" type="RayCast2D" parent="."]
-position = Vector2(5, 0)
+position = Vector2(3, 0)
 target_position = Vector2(0, 3)
 hit_from_inside = true
 
 [node name="LeftGroundChecker" type="RayCast2D" parent="."]
-position = Vector2(-5, 0)
+position = Vector2(-3, 0)
 target_position = Vector2(0, 3)
+hit_from_inside = true
+
+[node name="LeftPressureChecker" type="RayCast2D" parent="."]
+position = Vector2(-5, -8)
+target_position = Vector2(-4, 0)
+hit_from_inside = true
+
+[node name="RightPressureChecker" type="RayCast2D" parent="."]
+position = Vector2(5, -8)
+target_position = Vector2(4, 0)
 hit_from_inside = true
 
 [node name="VisibleOnScreenNotifier2d" type="VisibleOnScreenNotifier2D" parent="."]

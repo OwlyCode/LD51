@@ -9,10 +9,12 @@ script = ExtResource("1_fgte8")
 [node name="StaticBody2d" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2d" type="CollisionPolygon2D" parent="StaticBody2d"]
-polygon = PackedVector2Array(97, 1, 97, -47, 113, -47, 113, 1, 257, 1, 257, -15, 273, -15, 273, 1, 481, 1, 481, 273, -31, 273, -31, 1)
+position = Vector2(225, 105)
+polygon = PackedVector2Array(128, -152, -48, -152, -48, -168, 128, -168)
 
 [node name="CollisionPolygon2d2" type="CollisionPolygon2D" parent="StaticBody2d"]
-polygon = PackedVector2Array(177, -47, 177, -63, 353, -63, 353, -47)
+position = Vector2(225, 105)
+polygon = PackedVector2Array(-112, -104, 16, -104, 16, -120, 64, -120, 64, -104, 256, -104, 256, 168, -256, 168, -256, -104, -144, -104, -144, -152, -112, -152)
 
 [node name="Entry" type="Node2D" parent="."]
 position = Vector2(-31, 1)

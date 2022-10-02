@@ -30,7 +30,7 @@ var buildup_played = false
 func _process(delta):
 	if %ChunkManager.idling:
 		%Rift.visible = false
-		stop()
+		paused = true
 		return
 
 	if time_left < 2.5 and not buildup_played:
