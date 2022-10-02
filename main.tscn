@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4j6enbgs1r70"]
+[gd_scene load_steps=25 format=3 uid="uid://c4j6enbgs1r70"]
 
 [ext_resource type="Script" path="res://Timer.gd" id="1_asy31"]
 [ext_resource type="PackedScene" uid="uid://c3ijc54xdmkip" path="res://player.tscn" id="2_5gbvf"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://iwuda40aiqo8" path="res://arts/Event.wav" id="2_rxtn7"]
 [ext_resource type="Script" path="res://Camera2d.gd" id="2_tbqe3"]
 [ext_resource type="AudioStream" uid="uid://blliyd12row48" path="res://arts/Buildup.wav" id="3_svxki"]
+[ext_resource type="Script" path="res://AsteroidSpawner.gd" id="4_uaiga"]
 [ext_resource type="Texture2D" uid="uid://b6xeowpppo74x" path="res://arts/energy1.png" id="6_wkt4m"]
 [ext_resource type="Texture2D" uid="uid://bmp3jfy84bbto" path="res://arts/energy2.png" id="7_28qcv"]
 [ext_resource type="Texture2D" uid="uid://bhfiyujrkx3up" path="res://arts/background_sky.png" id="7_rtlkq"]
@@ -71,6 +72,11 @@ position = Vector2(0, -31)
 current = true
 zoom = Vector2(3, 3)
 script = ExtResource("2_tbqe3")
+
+[node name="AsteroidSpawner" type="Node2D" parent="Camera2d"]
+unique_name_in_owner = true
+position = Vector2(237, -134)
+script = ExtResource("4_uaiga")
 
 [node name="Glow" type="Sprite2D" parent="Camera2d"]
 unique_name_in_owner = true

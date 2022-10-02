@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg3wqvdnhbutq"]
+
+[ext_resource type="Script" path="res://effects/asteroid.gd" id="1_7c1hu"]
+[ext_resource type="Texture2D" uid="uid://c0c3cerjjlhp3" path="res://arts/asteroids.png" id="1_dl7os"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pk50y"]
+radius = 7.0
+
+[node name="Asteroid" type="Node2D" groups=["asteroids"]]
+rotation = 0.785398
+script = ExtResource("1_7c1hu")
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
+texture = ExtResource("1_dl7os")
+
+[node name="RayCast2d" type="RayCast2D" parent="."]
+position = Vector2(0, -4)
+target_position = Vector2(0, 6)
+
+[node name="Area2d" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Area2d"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_pk50y")

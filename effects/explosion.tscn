@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://48ihhrul80jr"]
+
+[ext_resource type="Texture2D" uid="uid://ccuoajhnguf4f" path="res://arts/explosion1.png" id="1_rqteb"]
+[ext_resource type="Texture2D" uid="uid://dtyrrsvik6uqn" path="res://arts/explosion2.png" id="2_tgirr"]
+[ext_resource type="Texture2D" uid="uid://7d3hnnfv8kfd" path="res://arts/explosion3.png" id="3_fcpa8"]
+[ext_resource type="Texture2D" uid="uid://q45gjtv4d7t4" path="res://arts/explosion4.png" id="4_ktcav"]
+[ext_resource type="Script" path="res://Explosion.gd" id="5_8ies5"]
+[ext_resource type="AudioStream" uid="uid://bxtn6at7gtcif" path="res://arts/Explosion.wav" id="6_iqq0c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vlmvk"]
+animations = [{
+"frames": [ExtResource("1_rqteb"), ExtResource("2_tgirr"), ExtResource("3_fcpa8"), ExtResource("4_ktcav")],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Explosion" type="AnimatedSprite2D"]
+z_index = 100
+frames = SubResource("SpriteFrames_vlmvk")
+playing = true
+script = ExtResource("5_8ies5")
+
+[node name="AudioStreamPlayer2d" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_iqq0c")
+autoplay = true
+
+[connection signal="animation_finished" from="." to="." method="_on_explosion_animation_finished"]

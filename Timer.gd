@@ -71,6 +71,8 @@ func _process(delta):
 
 func _on_timer_timeout():
 	reset_visual_effect()
+	reset_game_effects()
+
 	var applied_effect = rand_visual_effect()
 
 	current_effects = []
@@ -83,7 +85,7 @@ func _on_timer_timeout():
 var current_effects = []
 
 func rand_visual_effect():
-	var funcs = [Callable(grayscale), Callable(hex)]
+	var funcs = [Callable(grayscale), Callable(hex), Callable(crt), Callable(noop)]
 
 	var rand_index = randi() % funcs.size()
 	var fn = funcs[rand_index]
@@ -95,6 +97,21 @@ func rand_visual_effect():
 
 	return fn
 
+func rand_game_effect():
+	var funcs = [Callable(asteroids), Callable(noop)]
+
+	var rand_index = randi() % funcs.size()
+	var fn = funcs[rand_index]
+
+	if fn in current_effects:
+		return rand_game_effect()
+
+	fn.call()
+
+	return fn
+
+func noop():
+	pass
 
 func grayscale():
 	%ScreenShader.material.shader = preload("res://shaders/grayscale.gdshader")
@@ -104,6 +121,16 @@ func hex():
 	%ScreenShader.material.shader = preload("res://shaders/hex.gdshader")
 	current_dimension = "the HEX dimension"
 
+func crt():
+	%ScreenShader.material.shader = preload("res://shaders/crt.gdshader")
+	current_dimension = "the CRT dimension"
+
 func reset_visual_effect():
 	%ScreenShader.material.shader = preload("res://shaders/noop.gdshader")
 	current_dimension = "the normal dimension"
+
+func asteroids():
+	%AsteroidSpawner.asteroids_enabled = true
+
+func reset_game_effects():
+	%AsteroidSpawner.asteroids_enabled = false
