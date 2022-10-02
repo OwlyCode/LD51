@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqwnwknka4yjm"
-path="res://.godot/imported/tileset.png-4a2fe39795d198c1dc597f9f8b03344a.ctex"
+uid="uid://cqs3t6raeemr7"
+path="res://.godot/imported/flat1.png-0d71f4935e3dc2fa37e09b6665dceec8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arts/tileset.png"
-dest_files=["res://.godot/imported/tileset.png-4a2fe39795d198c1dc597f9f8b03344a.ctex"]
+source_file="res://arts/flat1.png"
+dest_files=["res://.godot/imported/flat1.png-0d71f4935e3dc2fa37e09b6665dceec8.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/hdr_compression=1
 compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

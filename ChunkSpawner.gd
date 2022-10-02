@@ -2,8 +2,8 @@ extends Node2D
 
 var chunks = [
 	preload("res://chunks/flat.tscn"),
-	preload("res://chunks/flat2.tscn"),
-	preload("res://chunks/flat3.tscn"),
+	#preload("res://chunks/flat2.tscn"), TODO DEBUG
+	#preload("res://chunks/flat3.tscn"), TODO DEBUG
 ]
 
 var parallax = [

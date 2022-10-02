@@ -1,3 +1,7 @@
+- Fixes
+    - Infinite jump at the edge
+    - slow shaders on html5
+
 - Improved version
     - key explanations
     - speed up ?

@@ -5,6 +5,9 @@ extends Timer
 # Rotate ?
 # Flip ?
 
+# Voice Singing dimension
+# Falling guys dimension
+
 # Kinds of modifiers : graphics, gameplay, tileset (can be cumulative)
 
 var rift1 = preload("res://arts/space1.png")
