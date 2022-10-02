@@ -71,12 +71,12 @@ shape = SubResource("CapsuleShape2D_xiens")
 
 [node name="RightGroundChecker" type="RayCast2D" parent="."]
 position = Vector2(3, 0)
-target_position = Vector2(0, 3)
+target_position = Vector2(0, 5)
 hit_from_inside = true
 
 [node name="LeftGroundChecker" type="RayCast2D" parent="."]
 position = Vector2(-3, 0)
-target_position = Vector2(0, 3)
+target_position = Vector2(0, 5)
 hit_from_inside = true
 
 [node name="LeftPressureChecker" type="RayCast2D" parent="."]

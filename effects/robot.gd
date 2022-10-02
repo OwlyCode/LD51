@@ -46,8 +46,9 @@ func _process(delta):
 		line.points = [Vector2(0,0), line.to_local(point)]
 
 	if status == Status.AIMING:
-		$Gun.rotation = player.global_position.angle_to_point($Gun.global_position)
+		$Gun.rotation = player.get_node("AnimatedSprite2d").global_position.angle_to_point($Gun.global_position)
 		timer -= delta
+		line.width = lerp(4.0, 1.0, 1.0 - timer / AIMING_TIME)
 	else:
 		timer -= delta
 

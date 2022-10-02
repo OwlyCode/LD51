@@ -23,7 +23,7 @@ func die(death_cause):
 
 func death_panel_show():
 		%DeathPanel.visible = true
-		%DeathPanel.get_node("Label").text = "You ran %d meters until %s in %s. \n\n Press X to start over." % [%ChunkManager.total_distance, death_cause, %Timer.current_dimension]
+		%DeathPanel.get_node("Label").text = "You ran %d meters until %s. \n\n Press X to start over." % [%ChunkManager.total_distance, death_cause]
 
 
 func _physics_process(delta):

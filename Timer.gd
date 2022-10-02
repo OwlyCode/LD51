@@ -1,31 +1,18 @@
 extends Timer
 
-# Effects
-# Skew
-# Rotate ?
-# Flip ?
-
-# Voice Singing dimension
-# Falling guys dimension
-
-# Kinds of modifiers : graphics, gameplay, tileset (can be cumulative)
-
 var rift1 = preload("res://arts/space1.png")
 var rift2 = preload("res://arts/space2.png")
 var rift3 = preload("res://arts/space3.png")
 
 var current_dimension = "the normal dimension"
 
+var event_count = 0
+
 @onready var game_sequence = [
-	[Callable(hey)],
-	[Callable(camera_flip_V)],
-	[Callable(camera_flip_H)],
-	[Callable(robot)],
-	# True start
 	[Callable(grayscale)],
-	[Callable(noop)],
-	[Callable(hex)], # Find something nice
 	[Callable(speed_up), Callable(increase_jump)],
+	[Callable(hex)],
+	[Callable(speed_up)],
 	[Callable(asteroids)],
 	[Callable(speed_up)],
 	[Callable(robot)],
@@ -33,7 +20,7 @@ var current_dimension = "the normal dimension"
 	[Callable(crt)],
 	[Callable(asteroids), Callable(speed_up), Callable(increase_jump)],
 	[Callable(robot), Callable(crt), Callable(speed_up)],
-	[Callable(increase_jump)]
+	[Callable(hey), Callable(increase_jump)]
 ]
 
 @onready var camera = get_node("/root/Node2d/Camera2d")
@@ -100,12 +87,21 @@ func _on_timer_timeout():
 		for x in planned:
 			x.call()
 	else:
+		event_count += 1
+
 		var applied_visual_effect = rand_visual_effect()
 		var applied_game_effect = rand_game_effect()
 
 		current_effects = []
 		current_effects.append(applied_visual_effect)
 		current_effects.append(applied_game_effect)
+
+		if event_count % 2 == 0:
+			speed_up()
+
+		if event_count > 6:
+			applied_game_effect = rand_game_effect()
+			current_effects.append(applied_game_effect)
 
 	$EventEffect.play()
 	buildup_played = false
@@ -127,7 +123,7 @@ func rand_visual_effect():
 	return fn
 
 func rand_game_effect():
-	var funcs = [Callable(asteroids), Callable(robot), Callable(noop)]
+	var funcs = [Callable(asteroids), Callable(robot), Callable(noop), Callable(camera_flip_V), Callable(camera_flip_H)]
 
 	var rand_index = randi() % funcs.size()
 	var fn = funcs[rand_index]
