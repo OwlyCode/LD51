@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=3 uid="uid://hy7mah0cj6kw"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_eu3w3"]
+[ext_resource type="Texture2D" uid="uid://d1k3h0qrdkkki" path="res://arts/ui.png" id="1_p1dnq"]
+[ext_resource type="Texture2D" uid="uid://biiintg4r82yc" path="res://arts/menu_bg.png" id="2_8kqoo"]
+[ext_resource type="Theme" uid="uid://cet4cydqv5qvc" path="res://main_menu_theme.tres" id="3_n7q3m"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_eu3w3")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -753.0
+offset_top = -376.5
+offset_right = 753.0
+offset_bottom = 376.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8kqoo")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -353.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Keys" type="TextureRect" parent="Panel"]
+texture_filter = 1
+layout_mode = 1
+offset_left = 35.0
+offset_top = 32.0
+offset_right = 327.0
+offset_bottom = 307.0
+texture = ExtResource("1_p1dnq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 30.0
+offset_right = 572.0
+offset_bottom = 215.0
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+offset_right = 532.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 60
+text = "Escape the Breach"
+horizontal_alignment = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2i(0, 30)
+layout_mode = 2
+offset_left = 532.0
+offset_top = 90.0
+offset_right = 532.0
+offset_bottom = 120.0
+size_flags_horizontal = 8
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[right]A game by [color=ece910]Tristan Maindron[/color] aka [color=ece910]@OwlyCode[/color][/right]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2i(0, 30)
+layout_mode = 2
+offset_top = 124.0
+offset_right = 532.0
+offset_bottom = 154.0
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[right]Made for[color=ece910]Ludum Dare 51[/color]: [i]\"Every 10 seconds\"[/i][/right] "
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.5
+offset_top = 130.0
+offset_right = 101.5
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Play" type="Button" parent="VBoxContainer2"]
+self_modulate = Color(1, 0.977075, 0.950865, 1)
+custom_minimum_size = Vector2i(0, 30)
+layout_mode = 2
+offset_right = 203.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_n7q3m")
+text = "Play"
+
+[node name="Quit" type="Button" parent="VBoxContainer2"]
+custom_minimum_size = Vector2i(0, 30)
+layout_mode = 2
+offset_top = 40.0
+offset_right = 203.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_n7q3m")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer2/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Quit" to="." method="_on_quit_pressed"]
