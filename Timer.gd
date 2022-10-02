@@ -16,6 +16,15 @@ var rift3 = preload("res://arts/space3.png")
 
 var current_dimension = "the normal dimension"
 
+@onready var game_sequence = [
+	# [Callable(grayscale)],
+	# [Callable(noop)],
+	# [Callable(crt)],
+	# [Callable(asteroids)],
+	# [Callable(noop)],
+	# [Callable(crt), Callable(asteroids)],
+]
+
 @onready var camera = get_node("/root/Node2d/Camera2d")
 
 func _ready():
@@ -73,10 +82,18 @@ func _on_timer_timeout():
 	reset_visual_effect()
 	reset_game_effects()
 
-	var applied_effect = rand_visual_effect()
+	var planned = game_sequence.pop_front()
 
-	current_effects = []
-	current_effects.append(applied_effect)
+	if planned:
+		for x in planned:
+			x.call()
+	else:
+		var applied_visual_effect = rand_visual_effect()
+		var applied_game_effect = rand_game_effect()
+
+		current_effects = []
+		current_effects.append(applied_visual_effect)
+		current_effects.append(applied_game_effect)
 
 	$EventEffect.play()
 	buildup_played = false
