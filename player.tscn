@@ -62,6 +62,7 @@ animations = [{
 [node name="Player" type="RigidBody2D"]
 mass = 80.0
 physics_material_override = SubResource("PhysicsMaterial_dmtd2")
+continuous_cd = 2
 script = ExtResource("1_r28ip")
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
@@ -79,12 +80,12 @@ target_position = Vector2(0, 5)
 hit_from_inside = true
 
 [node name="LeftPressureChecker" type="RayCast2D" parent="."]
-position = Vector2(-5, -8)
+position = Vector2(-5, -11)
 target_position = Vector2(-4, 0)
 hit_from_inside = true
 
 [node name="RightPressureChecker" type="RayCast2D" parent="."]
-position = Vector2(5, -8)
+position = Vector2(5, -11)
 target_position = Vector2(4, 0)
 hit_from_inside = true
 

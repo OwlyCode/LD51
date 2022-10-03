@@ -4,6 +4,11 @@ var alive = true
 
 var death_cause = ""
 
+const MAX_JUMP_TOLERANCE = 0.1
+
+var jump_tolerance = MAX_JUMP_TOLERANCE
+var jumped = 0.0
+
 func _ready():
 	lock_rotation = true
 	$AnimatedSprite2d.play("Idle")
@@ -38,11 +43,20 @@ func _process(delta):
 		%Intro.visible = false
 		%Timer.paused = false
 
+	jump_tolerance -= delta
+	jumped -= delta
+
+	if $RightGroundChecker.is_colliding() and jumped < 0:
+		jump_tolerance = MAX_JUMP_TOLERANCE
+
+
 	if alive and Input.is_action_just_pressed("jump"):
 		$LeftGroundChecker.force_raycast_update()
 		$RightGroundChecker.force_raycast_update()
 
-		if $LeftGroundChecker.is_colliding() or $RightGroundChecker.is_colliding():
+		if $LeftGroundChecker.is_colliding() or $RightGroundChecker.is_colliding() or jump_tolerance > 0:
+			jump_tolerance = 0
+			jumped = 0.5
 			apply_central_impulse(Vector2.UP * 25000)
 			$JumpSound.play()
 
@@ -61,7 +75,7 @@ func _physics_process(delta):
 			set_axis_velocity(Vector2.LEFT * 190 * %ChunkManager.speed_modifier)
 	elif Input.is_action_pressed("left"):
 		set_axis_velocity(Vector2.LEFT * (300 * %ChunkManager.speed_modifier))
-	elif not %ChunkManager.idling:
+	elif not %ChunkManager.idling and alive:
 		if not $RightPressureChecker.is_colliding():
 			set_axis_velocity(Vector2.RIGHT)
 		else:
