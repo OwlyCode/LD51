@@ -146,6 +146,7 @@ func rand_game_effect():
 func noop():
 	pass
 
+
 func grayscale():
 	%ScreenShader.material.shader = preload("res://shaders/grayscale.gdshader")
 

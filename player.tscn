@@ -70,12 +70,12 @@ position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_xiens")
 
 [node name="RightGroundChecker" type="RayCast2D" parent="."]
-position = Vector2(3, 0)
+position = Vector2(4, 0)
 target_position = Vector2(0, 5)
 hit_from_inside = true
 
 [node name="LeftGroundChecker" type="RayCast2D" parent="."]
-position = Vector2(-3, 0)
+position = Vector2(-8, 0)
 target_position = Vector2(0, 5)
 hit_from_inside = true
 
@@ -100,7 +100,7 @@ volume_db = -10.0
 [node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 frames = SubResource("SpriteFrames_pmy0w")
-animation = &"Idle"
+animation = &"Run"
 playing = true
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c4j6enbgs1r70"]
+[gd_scene load_steps=35 format=3 uid="uid://c4j6enbgs1r70"]
 
 [ext_resource type="Script" path="res://Timer.gd" id="1_asy31"]
 [ext_resource type="PackedScene" uid="uid://c3ijc54xdmkip" path="res://player.tscn" id="2_5gbvf"]
@@ -18,7 +18,12 @@
 [ext_resource type="Shader" path="res://shaders/noop.gdshader" id="13_iuega"]
 [ext_resource type="AudioStream" uid="uid://irgokd10nmye" path="res://arts/loop2.wav" id="16_f6gbk"]
 [ext_resource type="Texture2D" uid="uid://d1k3h0qrdkkki" path="res://arts/ui.png" id="17_fa37l"]
+[ext_resource type="Script" path="res://ShaderCache2.gd" id="17_rs6m4"]
 [ext_resource type="PackedScene" uid="uid://c86m46k0dlrxk" path="res://sound_control.tscn" id="19_3ycil"]
+[ext_resource type="Shader" path="res://shaders/crt.gdshader" id="19_vbjpm"]
+[ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="20_gl0j0"]
+[ext_resource type="Shader" path="res://shaders/hex.gdshader" id="20_x7ynj"]
+[ext_resource type="Shader" path="res://shaders/invert.gdshader" id="21_co5sj"]
 
 [sub_resource type="Gradient" id="Gradient_xuwjs"]
 offsets = PackedFloat32Array(0, 0.950549)
@@ -40,6 +45,40 @@ animations = [{
 "name": &"Power",
 "speed": 5.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s2t28"]
+shader = ExtResource("20_gl0j0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n8n8v"]
+shader = ExtResource("19_vbjpm")
+shader_parameter/aberration = null
+shader_parameter/brightness = null
+shader_parameter/clip_warp = null
+shader_parameter/discolor = null
+shader_parameter/distort_intensity = null
+shader_parameter/grille_opacity = null
+shader_parameter/noise_opacity = null
+shader_parameter/noise_speed = null
+shader_parameter/overlay = null
+shader_parameter/pixelate = null
+shader_parameter/resolution = null
+shader_parameter/roll = null
+shader_parameter/roll_size = null
+shader_parameter/roll_speed = null
+shader_parameter/roll_variation = null
+shader_parameter/scanlines_opacity = null
+shader_parameter/scanlines_width = null
+shader_parameter/static_noise_intensity = null
+shader_parameter/vignette_intensity = null
+shader_parameter/vignette_opacity = null
+shader_parameter/warp_amount = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7ird"]
+shader = ExtResource("20_x7ynj")
+shader_parameter/size = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rv2e8"]
+shader = ExtResource("21_co5sj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p0uom"]
 shader = ExtResource("13_iuega")
@@ -138,6 +177,43 @@ playing = true
 [node name="AudioStreamPlayer2d" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_f6gbk")
 autoplay = true
+
+[node name="ShaderCache2" type="CanvasLayer" parent="."]
+scale = Vector2(0.01, 0.01)
+transform = Transform2D(0.01, 0, 0, 0.01, 0, 0)
+script = ExtResource("17_rs6m4")
+
+[node name="Grayscale" type="ColorRect" parent="ShaderCache2"]
+material = SubResource("ShaderMaterial_s2t28")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CRT" type="ColorRect" parent="ShaderCache2"]
+material = SubResource("ShaderMaterial_n8n8v")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HEX" type="ColorRect" parent="ShaderCache2"]
+material = SubResource("ShaderMaterial_i7ird")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Invert" type="ColorRect" parent="ShaderCache2"]
+material = SubResource("ShaderMaterial_rv2e8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -239,5 +315,15 @@ offset_bottom = 617.0
 texture = ExtResource("17_fa37l")
 
 [node name="HSlider" parent="CanvasLayer2/Control" instance=ExtResource("19_3ycil")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -139.0
+offset_top = 13.0
+offset_right = -14.0
+offset_bottom = 29.0
+grow_horizontal = 0
+
+[node name="ShaderCache" type="Node" parent="."]
 
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timer_timeout"]
