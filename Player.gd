@@ -54,12 +54,18 @@ func _physics_process(delta):
 	if $LeftPressureChecker.is_colliding() and $RightPressureChecker.is_colliding():
 		die("you got squished to death")
 
-	if Input.is_action_pressed("right") and not $RightPressureChecker.is_colliding():
-		set_axis_velocity(Vector2.RIGHT * 150)
+	if Input.is_action_pressed("right"):
+		if not $RightPressureChecker.is_colliding():
+			set_axis_velocity(Vector2.RIGHT * 150)
+		else:
+			set_axis_velocity(Vector2.LEFT * 190 * %ChunkManager.speed_modifier)
 	elif Input.is_action_pressed("left"):
 		set_axis_velocity(Vector2.LEFT * (300 * %ChunkManager.speed_modifier))
-	else:
-		set_axis_velocity(Vector2.RIGHT)
+	elif not %ChunkManager.idling:
+		if not $RightPressureChecker.is_colliding():
+			set_axis_velocity(Vector2.RIGHT)
+		else:
+			set_axis_velocity(Vector2.LEFT * 190 * %ChunkManager.speed_modifier)
 
 	if $LeftGroundChecker.is_colliding() or $RightGroundChecker.is_colliding():
 		if %ChunkManager.idling:

@@ -62,7 +62,6 @@ animations = [{
 [node name="Player" type="RigidBody2D"]
 mass = 80.0
 physics_material_override = SubResource("PhysicsMaterial_dmtd2")
-continuous_cd = 2
 script = ExtResource("1_r28ip")
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
