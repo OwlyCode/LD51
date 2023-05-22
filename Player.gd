@@ -13,10 +13,10 @@ func _ready():
 	lock_rotation = true
 	$AnimatedSprite2d.play("Idle")
 
-func die(death_cause):
+func die(cause):
 	if alive:
 		$AnimatedSprite2d.play("Die")
-		death_cause = death_cause
+		death_cause = cause
 		$DeathSound.play()
 		%Timer.paused = true
 		alive = false

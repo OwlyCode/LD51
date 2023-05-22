@@ -9,16 +9,29 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vlmvk"]
 animations = [{
-"frames": [ExtResource("1_rqteb"), ExtResource("2_tgirr"), ExtResource("3_fcpa8"), ExtResource("4_ktcav")],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rqteb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tgirr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fcpa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ktcav")
+}],
+"loop": false,
 "name": &"default",
 "speed": 12.0
 }]
 
 [node name="Explosion" type="AnimatedSprite2D"]
 z_index = 100
-frames = SubResource("SpriteFrames_vlmvk")
-playing = true
+sprite_frames = SubResource("SpriteFrames_vlmvk")
+frame = 3
+frame_progress = 1.0
 script = ExtResource("5_8ies5")
 
 [node name="AudioStreamPlayer2d" type="AudioStreamPlayer2D" parent="."]

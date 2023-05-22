@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://brkcda6v3krnv" path="res://arts/background_buildings.png" id="9_dc4n8"]
 [ext_resource type="Texture2D" uid="uid://vtx10u5018wl" path="res://arts/energy5.png" id="10_q23ut"]
 [ext_resource type="Shader" path="res://shaders/noop.gdshader" id="13_iuega"]
-[ext_resource type="AudioStream" uid="uid://irgokd10nmye" path="res://arts/loop2.wav" id="16_f6gbk"]
+[ext_resource type="AudioStream" uid="uid://bfuahg1kiit66" path="res://arts/music.mp3" id="16_7gfwu"]
 [ext_resource type="Texture2D" uid="uid://d1k3h0qrdkkki" path="res://arts/ui.png" id="17_fa37l"]
 [ext_resource type="Script" path="res://ShaderCache2.gd" id="17_rs6m4"]
 [ext_resource type="PackedScene" uid="uid://c86m46k0dlrxk" path="res://sound_control.tscn" id="19_3ycil"]
@@ -40,7 +40,22 @@ size = Vector2(74, 299)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n2bjm"]
 animations = [{
-"frames": [ExtResource("6_wkt4m"), ExtResource("7_28qcv"), ExtResource("8_gd5dy"), ExtResource("9_1pfty"), ExtResource("10_q23ut")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wkt4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_28qcv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gd5dy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1pfty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_q23ut")
+}],
 "loop": true,
 "name": &"Power",
 "speed": 5.0
@@ -51,31 +66,31 @@ shader = ExtResource("20_gl0j0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n8n8v"]
 shader = ExtResource("19_vbjpm")
-shader_parameter/aberration = null
-shader_parameter/brightness = null
-shader_parameter/clip_warp = null
-shader_parameter/discolor = null
-shader_parameter/distort_intensity = null
-shader_parameter/grille_opacity = null
-shader_parameter/noise_opacity = null
-shader_parameter/noise_speed = null
-shader_parameter/overlay = null
-shader_parameter/pixelate = null
-shader_parameter/resolution = null
-shader_parameter/roll = null
-shader_parameter/roll_size = null
-shader_parameter/roll_speed = null
-shader_parameter/roll_variation = null
-shader_parameter/scanlines_opacity = null
-shader_parameter/scanlines_width = null
-shader_parameter/static_noise_intensity = null
-shader_parameter/vignette_intensity = null
-shader_parameter/vignette_opacity = null
-shader_parameter/warp_amount = null
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.2
+shader_parameter/resolution = Vector2(1200, 1200)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.2
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.06
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.2
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i7ird"]
 shader = ExtResource("20_x7ynj")
-shader_parameter/size = null
+shader_parameter/size = Vector2(8, 8)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rv2e8"]
 shader = ExtResource("21_co5sj")
@@ -110,7 +125,6 @@ script = ExtResource("2_n1x2w")
 [node name="Camera2d" type="Camera2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -31)
-current = true
 zoom = Vector2(3, 3)
 script = ExtResource("2_tbqe3")
 
@@ -123,9 +137,9 @@ script = ExtResource("4_uaiga")
 unique_name_in_owner = true
 visible = false
 modulate = Color(1, 0, 0.054902, 0.266667)
+z_index = 10
 position = Vector2(13, 21)
 scale = Vector2(1.90625, 278)
-z_index = 10
 texture = SubResource("GradientTexture1D_u4cvj")
 
 [node name="AudioListener2d" type="AudioListener2D" parent="Camera2d"]
@@ -151,31 +165,32 @@ motion_scale = Vector2(0, 0)
 motion_offset = Vector2(170, 70)
 
 [node name="Sprite2d" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture_filter = 1
 z_index = -100
+texture_filter = 1
 texture = ExtResource("7_rtlkq")
 
 [node name="Rift" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 unique_name_in_owner = true
-position = Vector2(0, -21)
 z_index = -50
+position = Vector2(0, -21)
 texture = ExtResource("8_5wpf6")
 
 [node name="Sprite2d2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture_filter = 1
 z_index = -25
+texture_filter = 1
 texture = ExtResource("9_dc4n8")
 
 [node name="Lasers" type="AnimatedSprite2D" parent="ParallaxBackground/ParallaxLayer"]
 unique_name_in_owner = true
 modulate = Color(1, 0.14902, 0, 1)
 texture_filter = 1
-frames = SubResource("SpriteFrames_n2bjm")
+sprite_frames = SubResource("SpriteFrames_n2bjm")
 animation = &"Power"
-playing = true
+autoplay = "Power"
+frame_progress = 0.6701
 
 [node name="AudioStreamPlayer2d" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("16_f6gbk")
+stream = ExtResource("16_7gfwu")
 autoplay = true
 
 [node name="ShaderCache2" type="CanvasLayer" parent="."]
@@ -238,7 +253,7 @@ grow_vertical = 2
 
 [node name="DistanceDisplay" type="Label" parent="CanvasLayer2/Control"]
 unique_name_in_owner = true
-anchors_preset = 5
+layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -62.5
@@ -252,14 +267,14 @@ vertical_alignment = 1
 [node name="DeathPanel" type="Panel" parent="CanvasLayer2/Control"]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer2/Control/DeathPanel"]
-anchors_preset = 8
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -278,14 +293,14 @@ autowrap_mode = 2
 
 [node name="Intro" type="Panel" parent="CanvasLayer2/Control"]
 unique_name_in_owner = true
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer2/Control/Intro"]
-anchors_preset = 8
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -308,6 +323,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer2/Control/Intro"]
+layout_mode = 0
 offset_left = 877.0
 offset_top = 337.0
 offset_right = 1175.0
@@ -315,7 +331,7 @@ offset_bottom = 617.0
 texture = ExtResource("17_fa37l")
 
 [node name="HSlider" parent="CanvasLayer2/Control" instance=ExtResource("19_3ycil")]
-anchors_preset = 1
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -139.0

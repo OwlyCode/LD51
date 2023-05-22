@@ -11,7 +11,25 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ou2wt"]
 animations = [{
-"frames": [ExtResource("1_l4agk"), ExtResource("2_klb2g"), ExtResource("3_4ptkx"), ExtResource("4_1eakj"), ExtResource("5_ns7y2"), ExtResource("6_xd885")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l4agk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_klb2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4ptkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1eakj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ns7y2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xd885")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
@@ -22,8 +40,7 @@ position = Vector2(166, -97)
 script = ExtResource("1_iajkw")
 
 [node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
-frames = SubResource("SpriteFrames_ou2wt")
-playing = true
+sprite_frames = SubResource("SpriteFrames_ou2wt")
 
 [node name="Gun" type="Node2D" parent="."]
 position = Vector2(6, -2)

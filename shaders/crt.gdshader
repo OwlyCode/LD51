@@ -14,9 +14,11 @@ shader_type canvas_item;
 // - If you are using this shader as an overlay, and want the shader to affect the nodes below in the Scene hierarchy,
 //   set 'overlay' to true (checked in the inspector).
 // On Mac there is potentially a bug causing this to not work properly. If that is the case and you want to use the shader as an overlay
-// change all "overlay ? SCREEN_TEXTURE : TEXTURE" to only "SCREEN_TEXTURE" on lines 129-140, and "vec2 uv = overlay ? warp(SCREEN_UV) : warp(UV);"
+// change all "overlay ? screen_texture : TEXTURE" to only "screen_texture" on lines 129-140, and "vec2 uv = overlay ? warp(SCREEN_UV) : warp(UV);"
 // to "vec2 uv = warp(SCREEN_UV);" on line 98.
 uniform bool overlay = true;
+
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
 uniform float scanlines_opacity : hint_range(0.0, 1.0) = 0.4;
 uniform float scanlines_width : hint_range(0.0, 0.5) = 0.25;
@@ -126,18 +128,18 @@ void fragment()
 		// If roll is true distort the texture with roll_uv. The texture is split up into RGB to 
 		// make some chromatic aberration. We apply the aberration to the red and green channels accorging to the aberration parameter
 		// and intensify it a bit in the roll distortion.
-		text.r = texture(SCREEN_TEXTURE, text_uv + roll_uv * 0.8 + vec2(aberration, 0.0) * .1).r;
-		text.g = texture(SCREEN_TEXTURE, text_uv + roll_uv * 1.2 - vec2(aberration, 0.0) * .1 ).g;
-		text.b = texture(SCREEN_TEXTURE, text_uv + roll_uv).b;
+		text.r = texture(screen_texture, text_uv + roll_uv * 0.8 + vec2(aberration, 0.0) * .1).r;
+		text.g = texture(screen_texture, text_uv + roll_uv * 1.2 - vec2(aberration, 0.0) * .1 ).g;
+		text.b = texture(screen_texture, text_uv + roll_uv).b;
 		text.a = 1.0;
 	}
 	else
 	{
 		// If roll is false only apply the aberration without any distorion. The aberration values are very small so the .1 is only 
 		// to make the slider in the Inspector less sensitive.
-		text.r = texture(SCREEN_TEXTURE, text_uv + vec2(aberration, 0.0) * .1).r;
-		text.g = texture(SCREEN_TEXTURE, text_uv - vec2(aberration, 0.0) * .1).g;
-		text.b = texture(SCREEN_TEXTURE, text_uv).b;
+		text.r = texture(screen_texture, text_uv + vec2(aberration, 0.0) * .1).r;
+		text.g = texture(screen_texture, text_uv - vec2(aberration, 0.0) * .1).g;
+		text.b = texture(screen_texture, text_uv).b;
 		text.a = 1.0;
 	}
 	

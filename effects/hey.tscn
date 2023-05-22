@@ -7,12 +7,21 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0lgna"]
 animations = [{
-"frames": [ExtResource("2_mp0wd")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mp0wd")
+}],
 "loop": true,
 "name": &"Silent",
 "speed": 5.0
 }, {
-"frames": [ExtResource("2_mp0wd"), ExtResource("3_0sovm")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mp0wd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0sovm")
+}],
 "loop": true,
 "name": &"Talking",
 "speed": 5.0
@@ -24,7 +33,7 @@ script = ExtResource("1_2170y")
 
 [node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
 z_index = -60
-frames = SubResource("SpriteFrames_0lgna")
+sprite_frames = SubResource("SpriteFrames_0lgna")
 animation = &"Silent"
 
 [node name="AudioStreamPlayer2d" type="AudioStreamPlayer2D" parent="."]

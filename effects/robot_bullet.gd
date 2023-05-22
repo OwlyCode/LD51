@@ -21,6 +21,7 @@ func _process(delta):
 
 func collide(collider):
 	var exp = explosion.instantiate()
+	exp.play("default")
 
 	if collider.has_method("die"):
 		collider.die("you got shot by an angry robot")

@@ -2,6 +2,8 @@ shader_type canvas_item;
 
 uniform vec2 size = vec2(8.0, 8.0);
 
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+
 void fragment() {
         vec2 norm_size = size * SCREEN_PIXEL_SIZE;
         bool half = mod(SCREEN_UV.y / 2.0, norm_size.y) / norm_size.y < 0.5;
@@ -18,5 +20,5 @@ void fragment() {
                              float(half)),
                          float(norm_uv.y < 0.3333333) * float(norm_uv.y / 0.3333333 < (abs(norm_uv.x - 0.5) * 2.0)));
 
-        COLOR = textureLod(SCREEN_TEXTURE, center_uv, 0.0);
+        COLOR = textureLod(screen_texture, center_uv, 0.0);
 }

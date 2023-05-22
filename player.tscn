@@ -38,22 +38,43 @@ region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pmy0w"]
 animations = [{
-"frames": [SubResource("AtlasTexture_2mo5q")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mo5q")
+}],
 "loop": true,
 "name": &"Die",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_870oa")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_870oa")
+}],
 "loop": true,
 "name": &"Idle",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_vic06")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vic06")
+}],
 "loop": true,
 "name": &"Jump",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_tejji"), SubResource("AtlasTexture_rommr"), SubResource("AtlasTexture_a1ved"), SubResource("AtlasTexture_tejji")],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tejji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rommr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1ved")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tejji")
+}],
 "loop": true,
 "name": &"Run",
 "speed": 12.0
@@ -99,9 +120,8 @@ volume_db = -10.0
 
 [node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
-frames = SubResource("SpriteFrames_pmy0w")
+sprite_frames = SubResource("SpriteFrames_pmy0w")
 animation = &"Run"
-playing = true
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_muf6v")

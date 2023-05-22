@@ -17,7 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_eu3w3")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
-anchors_preset = 8
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -33,7 +33,7 @@ texture = ExtResource("2_8kqoo")
 [node name="Panel" type="Panel" parent="."]
 visible = false
 self_modulate = Color(0, 0, 0, 1)
-anchors_preset = 11
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,6 +43,7 @@ grow_vertical = 2
 
 [node name="Keys" type="TextureRect" parent="Panel"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 35.0
 offset_top = 32.0
 offset_right = 327.0
@@ -50,40 +51,43 @@ offset_bottom = 307.0
 texture = ExtResource("1_p1dnq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 40.0
 offset_top = 30.0
 offset_right = 572.0
 offset_bottom = 215.0
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-offset_right = 532.0
-offset_bottom = 86.0
+layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Escape the Breach"
 horizontal_alignment = 2
 
+[node name="RichTextLabel3" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[right][wave][color=#47f641]Post-jam update![/color] Music by [color=#47f641]Makse[/color][/wave][/right]"
+
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
-custom_minimum_size = Vector2i(500, 30)
-offset_left = 32.0
-offset_top = 90.0
-offset_right = 532.0
-offset_bottom = 120.0
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "[right]A game by [color=ece910]Tristan Maindron[/color] aka [color=ece910]@OwlyCode[/color][/right]"
+text = "[right]A game made by [color=ece910]Tristan Maindron[/color] aka [color=ece910]@OwlyCode[/color][/right]"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer"]
-custom_minimum_size = Vector2i(0, 30)
-offset_top = 124.0
-offset_right = 532.0
-offset_bottom = 154.0
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
 bbcode_enabled = true
-text = "[right]Made for[color=ece910]Ludum Dare 51[/color]: [i]\"Every 10 seconds\"[/i][/right] "
+text = "[right]Made for [color=ece910]Ludum Dare 51[/color]: [i]\"Every 10 seconds\"[/i][/right] "
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-anchors_preset = 8
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -98,26 +102,19 @@ theme_override_constants/separation = 10
 
 [node name="Play" type="Button" parent="VBoxContainer2"]
 self_modulate = Color(1, 0.977075, 0.950865, 1)
-custom_minimum_size = Vector2i(0, 30)
-offset_right = 203.0
-offset_bottom = 30.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 theme = ExtResource("3_n7q3m")
 text = "Play"
 
 [node name="Quit" type="Button" parent="VBoxContainer2"]
-custom_minimum_size = Vector2i(0, 30)
-offset_top = 40.0
-offset_right = 203.0
-offset_bottom = 70.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 theme = ExtResource("3_n7q3m")
 text = "Quit"
 
 [node name="HSlider" parent="." instance=ExtResource("5_0vv3s")]
-anchors_preset = 1
+layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -138.0

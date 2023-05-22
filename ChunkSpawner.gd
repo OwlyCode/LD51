@@ -71,7 +71,7 @@ func _process(delta):
 	fill()
 	fill_parallax()
 
-	if player.global_position.y > lowest + 200:
+	if player.global_position.y > lowest + 200 and player.alive:
 		player.die("you fell from a very high place")
 
 	if can_scroll():
